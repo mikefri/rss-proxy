@@ -1,38 +1,38 @@
 [
   {
-    "name": "loulou Café",
-    "url": "https://feeds.acast.com/public/shows/tech-cafe"
-  },
-  {
-    "name": "La méthode scientifique",
-    "url": "https://www.radiofrance.fr/franceculture/podcasts/la-methode-scientifique.xml"
-  },
-  {
-    "name": "Le moment Meurice",
-    "url": "https://www.radiofrance.fr/franceinter/podcasts/le-moment-meurice.xml"
-  },
-  {
-    "name": "Choses à savoir",
-    "url": "https://www.chosesasavoir.com/feed/podcast/"
-  },
-  {
-    "name": "Le RDV Tech",
-    "url": "https://feeds.feedburner.com/lerdvtech"
-  },
-  {
-    "name": "Le Gratin",
-    "url": "https://anchor.fm/s/3ccfdfc0/podcast/rss"
-  },
-  {
     "name": "Affaires Sensibles",
     "url": "https://www.radiofrance.fr/franceinter/podcasts/affaires-sensibles.xml"
   },
   {
-    "name": "Les couilles sur la table",
-    "url": "https://feeds.acast.com/public/shows/les-couilles-sur-la-table"
+    "name": "Legend",
+    "url": "https://www.guillaumepodcast.com/legend"
   },
   {
-    "name": "Transfert",
-    "url": "https://feeds.feedburner.com/TransfertSlate"
+    "name": "Hondelatte Raconte",
+    "url": "https://www.europe1.fr/podcasts/hondelatte-raconte"
+  },
+  {
+    "name": "Les Pieds sur Terre",
+    "url": "https://www.franceculture.fr/podcasts/les-pieds-sur-terre"
+  },
+  {
+    "name": "La Martingale",
+    "url": "https://www.gdiy.fr/podcasts/la-martingale"
+  },
+  {
+    "name": "OVNI’s",
+    "url": "https://www.gdiy.fr/podcasts/ovnis"
+  },
+  {
+    "name": "Vlan!",
+    "url": "https://www.gdiy.fr/podcasts/vlan"
+  },
+  {
+    "name": "Méta de Choc",
+    "url": "https://www.metadechoc.com/podcast"
+  },
+  {
+    "name": "Projet Orloff",
+    "url": "https://www.franceculture.fr/podcasts/projet-orloff"
   }
 ]
