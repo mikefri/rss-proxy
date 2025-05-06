@@ -62,12 +62,12 @@
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       display: flex;
+      flex-direction: column;
+    }
+    #episodes .episode-header {
+      display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-    #episodes .episode-details {
-      display: none;
-      padding-top: 1em;
     }
     .arrow {
       cursor: pointer;
@@ -77,9 +77,26 @@
     .arrow.open {
       transform: rotate(180deg);
     }
+    .episode-details {
+      display: none;
+      padding-top: 1em;
+    }
     audio {
       width: 100%;
       margin-top: 0.5em;
+    }
+    .play-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 0.5em 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-top: 0.5em;
+    }
+    .play-button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
@@ -139,6 +156,7 @@
           title: item.querySelector("title")?.textContent || "Sans titre",
           audio: item.querySelector("enclosure")?.getAttribute("url") || "",
           description: item.querySelector("description")?.textContent || "",
+          pubDate: item.querySelector("pubDate")?.textContent || "",
         }));
 
         showPodcastHeader(name, image);
@@ -160,8 +178,12 @@
       const container = document.getElementById("episodes");
       container.innerHTML = episodes.map(ep => `
         <div class="episode">
-          <h3>${ep.title}</h3>
-          <span class="arrow" onclick="toggleDetails(this)">▼</span>
+          <div class="episode-header">
+            <h3>${ep.title}</h3>
+            <span class="arrow" onclick="toggleDetails(this)">▼</span>
+          </div>
+          <p><em>${new Date(ep.pubDate).toLocaleDateString()}</em></p>
+          <button class="play-button" onclick="playAudio('${ep.audio}')">Lire</button>
           <div class="episode-details">
             <p>${ep.description}</p>
             <audio controls src="${ep.audio}"></audio>
@@ -174,6 +196,11 @@
       const details = arrow.closest('.episode').querySelector('.episode-details');
       details.style.display = details.style.display === "block" ? "none" : "block";
       arrow.classList.toggle("open");
+    }
+
+    function playAudio(audioUrl) {
+      const audioElement = new Audio(audioUrl);
+      audioElement.play();
     }
 
     window.addEventListener("DOMContentLoaded", loadPodcastList);
