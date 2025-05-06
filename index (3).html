@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PodCastHub</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 1em;
+      background: #f4f4f4;
+      color: #333;
+    }
+    h1 {
+      margin-bottom: 0.5em;
+    }
+    select {
+      font-size: 1em;
+      padding: 0.5em;
+      margin-bottom: 1em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .episode {
+      background: white;
+      padding: 1em;
+      margin-bottom: 1em;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    audio {
+      width: 100%;
+      margin-top: 0.5em;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎧 PodCastHub</h1>
+
+  <label for="podcast-select">Choisir un podcast :</label><br />
+  <select id="podcast-select">
+    <option value="https://feeds.acast.com/public/shows/tech-cafe">Tech Café</option>
+    <option value="https://www.radiofrance.fr/franceculture/podcasts/la-methode-scientifique.xml">La méthode scientifique</option>
+    <option value="https://www.radiofrance.fr/franceinter/podcasts/le-moment-meurice.xml">Le moment Meurice</option>
+    <option value="https://www.chosesasavoir.com/feed/podcast/">Choses à savoir</option>
+    <option value="https://feeds.feedburner.com/lerdvtech">Le RDV Tech</option>
+    <option value="https://anchor.fm/s/3ccfdfc0/podcast/rss">Le Gratin</option>
+    <option value="https://www.radiofrance.fr/franceinter/podcasts/affaires-sensibles.xml">Affaires Sensibles</option>
+    <option value="https://feeds.acast.com/public/shows/les-couilles-sur-la-table">Les couilles sur la table</option>
+    <option value="https://feeds.feedburner.com/TransfertSlate">Transfert</option>
+  </select>
+
+  <div id="episodes">Chargement...</div>
+
+  <script>
+    const podcastUrls = {
+      "Tech Café": "https://feeds.acast.com/public/shows/tech-cafe",
+      "La méthode scientifique": "https://www.radiofrance.fr/franceculture/podcasts/la-methode-scientifique.xml",
+      "Le moment Meurice": "https://www.radiofrance.fr/franceinter/podcasts/le-moment-meurice.xml",
+      "Choses à savoir": "https://www.chosesasavoir.com/feed/podcast/",
+      "Le RDV Tech": "https://feeds.feedburner.com/lerdvtech",
+      "Le Gratin": "https://anchor.fm/s/3ccfdfc0/podcast/rss",
+      "Affaires Sensibles": "https://www.radiofrance.fr/franceinter/podcasts/affaires-sensibles.xml",
+      "Les couilles sur la table": "https://feeds.acast.com/public/shows/les-couilles-sur-la-table",
+      "Transfert": "https://feeds.feedburner.com/TransfertSlate"
+    };
+
+    async function fetchPodcastRSS(url) {
+      try {
+        document.getElementById("episodes").innerText = "Chargement...";
+        const apiUrl = `https://ton-projet.vercel.app/api/rss?url=${encodeURIComponent(url)}`; // URL de ton proxy Vercel
+        const response = await fetch(apiUrl);
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(xmlText, "application/xml");
+        const items = [...xml.querySelectorAll("item")];
+
+        const episodes = items.map(item => ({
+          title: item.querySelector("title")?.textContent || "Sans titre",
+          audio: item.querySelector("enclosure")?.getAttribute("url") || "",
+          description: item.querySelector("description")?.textContent || "",
+          pubDate: item.querySelector("pubDate")?.textContent || "",
+        }));
+
+        displayEpisodes(episodes);
+      } catch (err) {
+        document.getElementById("episodes").innerText = "Erreur de chargement du podcast.";
+        console.error(err);
+      }
+    }
+
+    function displayEpisodes(episodes) {
+      const container = document.getElementById("episodes");
+      container.innerHTML = "";
+
+      episodes.forEach(ep => {
+        const div = document.createElement("div");
+        div.className = "episode";
+        div.innerHTML = `
+          <h3>${ep.title}</h3>
+          <p><em>${ep.pubDate}</em></p>
+          <p>${ep.description}</p>
+          <audio controls src="${ep.audio}"></audio>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    document.getElementById("podcast-select").addEventListener("change", (e) => {
+      const label = e.target.options[e.target.selectedIndex].text;
+      fetchPodcastRSS(podcastUrls[label]);
+    });
+
+    // Initialisation
+    window.addEventListener("DOMContentLoaded", () => {
+      const label = document.getElementById("podcast-select").options[0].text;
+      fetchPodcastRSS(podcastUrls[label]);
+    });
+  </script>
+</body>
+</html>
