@@ -1,38 +1,8 @@
+
 [
   {
     "name": "Les Grosses Têtes",
-    "url": "https://feeds.audiomeans.fr/feed/d7c6111b-04c1-46bc-b74c-d941a90d37fb.xml"
-  },
-  {
-    "name": "Legend",
-    "url": "https://www.guillaumepodcast.com/legend"
-  },
-  {
-    "name": "Hondelatte Raconte",
-    "url": "https://www.europe1.fr/podcasts/hondelatte-raconte"
-  },
-  {
-    "name": "Les Pieds sur Terre",
-    "url": "https://www.franceculture.fr/podcasts/les-pieds-sur-terre"
-  },
-  {
-    "name": "La Martingale",
-    "url": "https://www.gdiy.fr/podcasts/la-martingale"
-  },
-  {
-    "name": "OVNI’s",
-    "url": "https://www.gdiy.fr/podcasts/ovnis"
-  },
-  {
-    "name": "Vlan!",
-    "url": "https://www.gdiy.fr/podcasts/vlan"
-  },
-  {
-    "name": "Méta de Choc",
-    "url": "https://www.metadechoc.com/podcast"
-  },
-  {
-    "name": "Projet Orloff",
-    "url": "https://www.franceculture.fr/podcasts/projet-orloff"
+    "url": "https://feeds.audiomeans.fr/feed/d7c6111b-04c1-46bc-b74c-d941a90d37fb.xml",
+    "image": "https://www.rtl.fr/assets/podcast/les-grosses-tetes.jpg"
   }
 ]
