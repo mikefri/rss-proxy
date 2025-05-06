@@ -4,18 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PodCastHub</title>
-<style>
-    * {
-      box-sizing: border-box;
-    }
+  <style>
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Montserrat', sans-serif;
       margin: 0;
       background-image: radial-gradient(circle at top left, #0f0c29, #302b63, #24243e);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
       color: white;
       min-height: 100vh;
     }
@@ -38,9 +33,7 @@
 
     .top-bar {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       background: rgba(20, 20, 20, 0.8);
       backdrop-filter: blur(15px);
       padding: 20px 0;
@@ -56,7 +49,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 1em;
-      margin-top: 90px; /* Laisse de l'espace pour la barre de navigation */
+      margin-top: 90px;
       margin-bottom: 2em;
     }
 
@@ -88,7 +81,6 @@
       align-items: center;
       gap: 1em;
       margin-bottom: 1em;
-      color: white;
     }
 
     #podcast-header img {
@@ -103,29 +95,23 @@
       padding: 1em;
       margin-bottom: 1em;
       border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
       backdrop-filter: blur(10px);
     }
 
-    #episodes .episode-header {
+    .episode-header {
       display: flex;
-      justify-content: flex-start;
       align-items: center;
-      color: white;
+      gap: 10px;
     }
 
     .arrow {
       cursor: pointer;
       font-size: 1.2em;
-      transition: transform 0.3s;
       color: #00ffe0;
+      transition: transform 0.3s;
     }
 
-    .arrow.open {
-      transform: rotate(180deg);
-    }
+    .arrow.open { transform: rotate(180deg); }
 
     .episode-details {
       display: none;
@@ -145,67 +131,24 @@
       border-radius: 20px;
       padding: 15px 25px;
       display: none;
-      flex-wrap: wrap;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
+      gap: 15px;
       max-width: 800px;
       width: 100%;
       box-shadow: 0 8px 30px rgba(0, 255, 255, 0.3);
     }
 
     #audio-player img {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
       border-radius: 12px;
       object-fit: cover;
     }
 
-    #audio-player button {
-      background: none;
-      border: none;
-      border-radius: 0;
-      width: auto;
-      height: auto;
-      font-size: 2em;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    #audio-player button:hover {
-      transform: scale(1.2);
-    }
-
-    .play-button {
-      background: none;
-      border: none;
-      color: #00ffe0;
-      font-size: 1em;
-      cursor: pointer;
-      transition: transform 0.3s;
-      margin-right: 10px;
-    }
-
-    .play-button:hover {
-      transform: scale(1.2);
-    }
-
-    #audio-controls {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    #equalizer {
-      width: 50px;
-      height: 10px;
-      background-color: #00ffe0;
-      transition: all 0.3s;
-    }
-
-    #equalizer.paused {
-      background-color: #555;
+    #audio-title {
+      font-weight: bold;
+      text-align: center;
     }
 
     #playPauseButton {
@@ -215,23 +158,21 @@
       color: white;
       cursor: pointer;
     }
-
   </style>
 </head>
 <body>
   <h1>🎧 PodCastHub</h1>
 
-  <div id="audio-player" style="display: none;">
-    <img id="audio-podcast-image" src="" alt="Podcast image">
+  <div id="audio-player">
+    <img id="audio-podcast-image" src="" alt="Podcast">
+    <div id="audio-title"></div>
     <audio id="audio-player-element" controls>
-      <source id="audio-source" src="" type="audio/mpeg">
+      <source id="audio-source" src="" type="audio/mpeg" />
     </audio>
-    <div id="audio-controls">
-      <button id="playPauseButton">
-        <span id="playIcon">▶️</span>
-        <span id="pauseIcon" style="display: none;">⏸️</span>
-      </button>
-    </div>
+    <button id="playPauseButton">
+      <span id="playIcon">▶️</span>
+      <span id="pauseIcon" style="display: none;">⏸️</span>
+    </button>
   </div>
 
   <div id="podcast-grid" class="podcast-grid">Chargement...</div>
@@ -246,7 +187,7 @@
   <script>
     let podcastList = [];
     let currentAudio = null;
-    let currentPodcastImage = ""; // ajout pour stocker l'image
+    let currentImage = "";
 
     async function loadPodcastList() {
       try {
@@ -265,7 +206,7 @@
           card.addEventListener("click", () => {
             const index = card.getAttribute("data-index");
             const podcast = podcastList[index];
-            currentPodcastImage = podcast.image; // on garde l'image courante
+            currentImage = podcast.image;
             fetchPodcastRSS(podcast.url, podcast.name, podcast.image);
           });
         });
@@ -313,14 +254,12 @@
       container.innerHTML = episodes.map(ep => `
         <div class="episode">
           <div class="episode-header">
-            <button class="play-button" onclick="playAudio('${ep.audio}', '${ep.title}', '${currentPodcastImage}')">▶️</button>
+            <button class="play-button" onclick="playAudio('${ep.audio}', \`${ep.title.replace(/'/g, "\\'")}\`, '${currentImage}')">▶️</button>
             <h3>${ep.title}</h3>
             <span class="arrow" onclick="toggleDetails(this)">▼</span>
           </div>
           <p><em>${new Date(ep.pubDate).toLocaleDateString()}</em></p>
-          <div class="episode-details">
-            <p>${ep.description}</p>
-          </div>
+          <div class="episode-details"><p>${ep.description}</p></div>
         </div>
       `).join("");
     }
@@ -332,9 +271,7 @@
     }
 
     function playAudio(audioUrl, title, imageUrl) {
-      if (currentAudio) {
-        currentAudio.pause();
-      }
+      if (currentAudio) currentAudio.pause();
 
       const audioElement = document.getElementById("audio-player-element");
       const audioSource = document.getElementById("audio-source");
@@ -343,13 +280,14 @@
       audioElement.load();
       audioElement.play();
 
-      document.getElementById("audio-podcast-image").src = imageUrl; // image correcte
+      document.getElementById("audio-podcast-image").src = imageUrl;
+      document.getElementById("audio-title").textContent = title;
       document.getElementById("audio-player").style.display = "flex";
 
       currentAudio = audioElement;
     }
 
-    // Gestion lecture/pause
+    // Bouton play/pause
     const playPauseButton = document.getElementById('playPauseButton');
     const audio = document.getElementById('audio-player-element');
     const playIcon = document.getElementById('playIcon');
@@ -358,17 +296,21 @@
     playPauseButton.addEventListener('click', function () {
       if (audio.paused) {
         audio.play();
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'inline';
       } else {
         audio.pause();
+        playIcon.style.display = 'inline';
+        pauseIcon.style.display = 'none';
       }
     });
 
-    audio.addEventListener('play', function () {
+    audio.addEventListener('play', () => {
       playIcon.style.display = 'none';
       pauseIcon.style.display = 'inline';
     });
 
-    audio.addEventListener('pause', function () {
+    audio.addEventListener('pause', () => {
       playIcon.style.display = 'inline';
       pauseIcon.style.display = 'none';
     });
