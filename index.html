@@ -43,7 +43,6 @@
       margin: 0.5em;
       font-weight: bold;
     }
-
     #podcast-header {
       display: flex;
       align-items: center;
@@ -92,7 +91,7 @@
         const grid = document.getElementById("podcast-grid");
         grid.innerHTML = podcastList.map((podcast, index) => `
           <div class="podcast-card" data-index="${index}">
-            <img src="https://www.google.com/s2/favicons?domain=${new URL(podcast.url).hostname}&sz=128" alt="${podcast.name}">
+            <img src="${podcast.image}" alt="${podcast.name}">
             <p>${podcast.name}</p>
           </div>
         `).join("");
@@ -100,7 +99,8 @@
         document.querySelectorAll(".podcast-card").forEach(card => {
           card.addEventListener("click", () => {
             const index = card.getAttribute("data-index");
-            fetchPodcastRSS(podcastList[index].url, podcastList[index].name);
+            const podcast = podcastList[index];
+            fetchPodcastRSS(podcast.url, podcast.name, podcast.image);
           });
         });
 
@@ -110,7 +110,7 @@
       }
     }
 
-    async function fetchPodcastRSS(url, name) {
+    async function fetchPodcastRSS(url, name, image) {
       try {
         document.getElementById("episodes").innerText = "Chargement...";
         const apiUrl = `https://rss-proxy-ld2j.vercel.app/api/rss?url=${encodeURIComponent(url)}`;
@@ -118,10 +118,6 @@
         const xmlText = await response.text();
         const parser = new DOMParser();
         const xml = parser.parseFromString(xmlText, "application/xml");
-
-        const image =
-          xml.querySelector("channel > image > url")?.textContent ||
-          xml.querySelector("itunes\\:image")?.getAttribute("href") || "";
 
         const items = [...xml.querySelectorAll("item")];
         const episodes = items.map(item => ({
