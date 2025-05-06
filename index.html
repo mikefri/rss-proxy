@@ -61,6 +61,21 @@
       margin-bottom: 1em;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #episodes .episode-details {
+      display: none;
+      padding-top: 1em;
+    }
+    .arrow {
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: transform 0.3s;
+    }
+    .arrow.open {
+      transform: rotate(180deg);
     }
     audio {
       width: 100%;
@@ -124,7 +139,6 @@
           title: item.querySelector("title")?.textContent || "Sans titre",
           audio: item.querySelector("enclosure")?.getAttribute("url") || "",
           description: item.querySelector("description")?.textContent || "",
-          pubDate: item.querySelector("pubDate")?.textContent || "",
         }));
 
         showPodcastHeader(name, image);
@@ -147,14 +161,22 @@
       container.innerHTML = episodes.map(ep => `
         <div class="episode">
           <h3>${ep.title}</h3>
-          <p><em>${ep.pubDate}</em></p>
-          <p>${ep.description}</p>
-          <audio controls src="${ep.audio}"></audio>
+          <span class="arrow" onclick="toggleDetails(this)">▼</span>
+          <div class="episode-details">
+            <p>${ep.description}</p>
+            <audio controls src="${ep.audio}"></audio>
+          </div>
         </div>
       `).join("");
+    }
+
+    function toggleDetails(arrow) {
+      const details = arrow.closest('.episode').querySelector('.episode-details');
+      details.style.display = details.style.display === "block" ? "none" : "block";
+      arrow.classList.toggle("open");
     }
 
     window.addEventListener("DOMContentLoaded", loadPodcastList);
   </script>
 </body>
-</html> 
+</html>
