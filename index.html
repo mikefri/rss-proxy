@@ -328,6 +328,39 @@
     }
 
     window.addEventListener("DOMContentLoaded", loadPodcastList);
+
+    // Fonction pour gérer lecture/pause
+playPauseButton.addEventListener('click', function () {
+    if (audio.paused) {
+        audio.play();
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'inline';
+        equalizer.classList.remove('paused');
+        equalizer.classList.add('active');
+    } else {
+        audio.pause();
+        playIcon.style.display = 'inline';
+        pauseIcon.style.display = 'none';
+        equalizer.classList.remove('active');
+        equalizer.classList.add('paused');
+    }
+});
+
+// Mettre à jour l'icône et l'égaliseur lors de la lecture
+audio.addEventListener('play', function () {
+    playIcon.style.display = 'none';
+    pauseIcon.style.display = 'inline';
+    equalizer.classList.remove('paused');
+    equalizer.classList.add('active');
+});
+
+// Mettre à jour l'icône et l'égaliseur lors de la pause
+audio.addEventListener('pause', function () {
+    playIcon.style.display = 'inline';
+    pauseIcon.style.display = 'none';
+    equalizer.classList.remove('active');
+    equalizer.classList.add('paused');
+});
   </script>
 </body>
 </html>
