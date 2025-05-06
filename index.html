@@ -50,7 +50,7 @@
     // Charger la liste des podcasts depuis le fichier JSON sur GitHub
     async function loadPodcastList() {
       try {
-        const response = await fetch("https://raw.githubusercontent.com/TON_UTILISATEUR/TON_REPO/main/data/podcasts.json");
+        const response = await fetch("https://raw.githubusercontent.com/mikefri/rss-proxy/refs/heads/main/podcasts.json");
         const podcasts = await response.json();
 
         // Remplir le menu déroulant avec les podcasts
