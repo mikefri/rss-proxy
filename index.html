@@ -17,7 +17,8 @@
 
     h1 {
       font-size: 2.8em;
-      margin: 0 0 20px;
+      margin: 100px 0 20px;
+      text-align: center;
       background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
       background-size: 200% auto;
       -webkit-background-clip: text;
@@ -45,12 +46,22 @@
       box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
     }
 
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .podcast-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 1em;
-      margin-top: 90px;
+      margin-top: 20px;
       margin-bottom: 2em;
+      width: 100%;
     }
 
     .podcast-card {
@@ -81,6 +92,7 @@
       align-items: center;
       gap: 1em;
       margin-bottom: 1em;
+      width: 100%;
     }
 
     #podcast-header img {
@@ -88,6 +100,10 @@
       height: 80px;
       border-radius: 10px;
       object-fit: cover;
+    }
+
+    #episodes {
+      width: 100%;
     }
 
     #episodes .episode {
@@ -161,28 +177,34 @@
   </style>
 </head>
 <body>
-  <h1>🎧 PodCastHub</h1>
-
-  <div id="audio-player">
-    <img id="audio-podcast-image" src="" alt="Podcast">
-    <div id="audio-title"></div>
-    <audio id="audio-player-element" controls>
-      <source id="audio-source" src="" type="audio/mpeg" />
-    </audio>
-    <button id="playPauseButton">
-      <span id="playIcon">▶️</span>
-      <span id="pauseIcon" style="display: none;">⏸️</span>
-    </button>
+  <div class="top-bar">
+    <div>🎧 PodCastHub</div>
   </div>
 
-  <div id="podcast-grid" class="podcast-grid">Chargement...</div>
+  <div class="container">
+    <h1>🎧 PodCastHub</h1>
 
-  <div id="podcast-header" style="display: none;">
-    <img id="podcast-image" src="" alt="Podcast image">
-    <h2 id="podcast-title"></h2>
+    <div id="audio-player">
+      <img id="audio-podcast-image" src="" alt="Podcast">
+      <div id="audio-title"></div>
+      <audio id="audio-player-element" controls>
+        <source id="audio-source" src="" type="audio/mpeg" />
+      </audio>
+      <button id="playPauseButton">
+        <span id="playIcon">▶️</span>
+        <span id="pauseIcon" style="display: none;">⏸️</span>
+      </button>
+    </div>
+
+    <div id="podcast-grid" class="podcast-grid">Chargement...</div>
+
+    <div id="podcast-header" style="display: none;">
+      <img id="podcast-image" src="" alt="Podcast image">
+      <h2 id="podcast-title"></h2>
+    </div>
+
+    <div id="episodes">Sélectionnez un podcast.</div>
   </div>
-
-  <div id="episodes">Sélectionnez un podcast.</div>
 
   <script>
     let podcastList = [];
@@ -195,12 +217,12 @@
         podcastList = await response.json();
 
         const grid = document.getElementById("podcast-grid");
-        grid.innerHTML = podcastList.map((podcast, index) => `
-          <div class="podcast-card" data-index="${index}">
+        grid.innerHTML = podcastList.map((podcast, index) => 
+          `<div class="podcast-card" data-index="${index}">
             <img src="${podcast.image}" alt="${podcast.name}">
             <p>${podcast.name}</p>
-          </div>
-        `).join("");
+          </div>`
+        ).join("");
 
         document.querySelectorAll(".podcast-card").forEach(card => {
           card.addEventListener("click", () => {
@@ -251,17 +273,17 @@
 
     function displayEpisodes(episodes) {
       const container = document.getElementById("episodes");
-      container.innerHTML = episodes.map(ep => `
-        <div class="episode">
+      container.innerHTML = episodes.map(ep => 
+        `<div class="episode">
           <div class="episode-header">
-            <button class="play-button" onclick="playAudio('${ep.audio}', \`${ep.title.replace(/'/g, "\\'")}\`, '${currentImage}')">▶️</button>
+            <button class="play-button" onclick="playAudio('${ep.audio}', \`${ep.title.replace(/`/g, "\\`")}\`, '${currentImage}')">▶️</button>
             <h3>${ep.title}</h3>
             <span class="arrow" onclick="toggleDetails(this)">▼</span>
           </div>
           <p><em>${new Date(ep.pubDate).toLocaleDateString()}</em></p>
           <div class="episode-details"><p>${ep.description}</p></div>
-        </div>
-      `).join("");
+        </div>`
+      ).join("");
     }
 
     function toggleDetails(arrow) {
@@ -287,7 +309,6 @@
       currentAudio = audioElement;
     }
 
-    // Bouton play/pause
     const playPauseButton = document.getElementById('playPauseButton');
     const audio = document.getElementById('audio-player-element');
     const playIcon = document.getElementById('playIcon');
