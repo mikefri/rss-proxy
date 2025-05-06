@@ -206,12 +206,12 @@
         <div class="episode">
           <div class="episode-header">
             <h3>${ep.title}</h3>
+            <button class="play-button" onclick="playAudio('${ep.audio}', '${ep.title}')">Lire</button>
             <span class="arrow" onclick="toggleDetails(this)">▼</span>
           </div>
           <p><em>${new Date(ep.pubDate).toLocaleDateString()}</em></p>
           <div class="episode-details">
             <p>${ep.description}</p>
-            <button class="play-button" onclick="playAudio('${ep.audio}', '${ep.title}')">Lire</button>
           </div>
         </div>
       `).join("");
