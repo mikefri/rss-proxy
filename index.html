@@ -5,192 +5,193 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PodCastHub</title>
   <style>
-  * {
-    box-sizing: border-box;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    background-image: radial-gradient(circle at top left, #0f0c29, #302b63, #24243e);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    color: white;
-    min-height: 100vh;
-  }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      background-image: radial-gradient(circle at top left, #0f0c29, #302b63, #24243e);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: white;
+      min-height: 100vh;
+    }
 
-  h1 {
-    font-size: 2.8em;
-    margin: 0 0 20px;
-    background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: neonText 3s linear infinite;
-  }
+    h1 {
+      font-size: 2.8em;
+      margin: 0 0 20px;
+      background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: neonText 3s linear infinite;
+    }
 
-  @keyframes neonText {
-    0% { background-position: 0% center; }
-    50% { background-position: 100% center; }
-    100% { background-position: 0% center; }
-  }
+    @keyframes neonText {
+      0% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+      100% { background-position: 0% center; }
+    }
 
-  .top-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(20, 20, 20, 0.8);
-    backdrop-filter: blur(15px);
-    padding: 20px 0;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
-  }
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(20, 20, 20, 0.8);
+      backdrop-filter: blur(15px);
+      padding: 20px 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
+    }
 
-  .podcast-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 1em;
-    margin-top: 90px; /* Laisse de l'espace pour la barre de navigation */
-    margin-bottom: 2em;
-  }
+    .podcast-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1em;
+      margin-top: 90px; /* Laisse de l'espace pour la barre de navigation */
+      margin-bottom: 2em;
+    }
 
-  .podcast-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 0, 255, 0.3);
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    .podcast-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 0, 255, 0.3);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-  .podcast-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
-  }
+    .podcast-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+    }
 
-  .podcast-card img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
+    .podcast-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
 
-  #podcast-header {
-    display: flex;
-    align-items: center;
-    gap: 1em;
-    margin-bottom: 1em;
-    color: white;
-  }
+    #podcast-header {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      margin-bottom: 1em;
+      color: white;
+    }
 
-  #podcast-header img {
-    width: 80px;
-    height: 80px;
-    border-radius: 10px;
-    object-fit: cover;
-  }
+    #podcast-header img {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
 
-  #episodes .episode {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 1em;
-    margin-bottom: 1em;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    backdrop-filter: blur(10px);
-  }
+    #episodes .episode {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1em;
+      margin-bottom: 1em;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(10px);
+    }
 
-  #episodes .episode-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-  }
+    #episodes .episode-header {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      color: white;
+    }
 
-  .arrow {
-    cursor: pointer;
-    font-size: 1.2em;
-    transition: transform 0.3s;
-    color: #00ffe0;
-  }
+    .arrow {
+      cursor: pointer;
+      font-size: 1.2em;
+      transition: transform 0.3s;
+      color: #00ffe0;
+    }
 
-  .arrow.open {
-    transform: rotate(180deg);
-  }
+    .arrow.open {
+      transform: rotate(180deg);
+    }
 
-  .episode-details {
-    display: none;
-    padding-top: 1em;
-  }
+    .episode-details {
+      display: none;
+      padding-top: 1em;
+    }
 
-  audio {
-    width: 100%;
-    margin-top: 0.5em;
-  }
+    audio {
+      width: 100%;
+      margin-top: 0.5em;
+    }
 
-  #audio-player {
-    margin-top: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(0, 255, 255, 0.4);
-    border-radius: 20px;
-    padding: 15px 25px;
-    display: none;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    max-width: 800px;
-    width: 100%;
-    box-shadow: 0 8px 30px rgba(0, 255, 255, 0.3);
-  }
+    #audio-player {
+      margin-top: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(0, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 15px 25px;
+      display: none;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 8px 30px rgba(0, 255, 255, 0.3);
+    }
 
-  #audio-player img {
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;
-    object-fit: cover;
-  }
+    #audio-player img {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
 
-  #audio-player button {
-    background: none;
-    border: none;
-    border-radius: 0;
-    width: auto;
-    height: auto;
-    font-size: 2em;
-    color: white;
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
+    #audio-player button {
+      background: none;
+      border: none;
+      border-radius: 0;
+      width: auto;
+      height: auto;
+      font-size: 2em;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
 
-  #audio-player button:hover {
-    transform: scale(1.2);
-  }
+    #audio-player button:hover {
+      transform: scale(1.2);
+    }
 
-  .play-button {
-    background: none;
-    border: none;
-    color: #00ffe0;
-    font-size: 1em;
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
+    .play-button {
+      background: none;
+      border: none;
+      color: #00ffe0;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.3s;
+      margin-right: 10px;
+    }
 
-  .play-button:hover {
-    transform: scale(1.2);
-  }
+    .play-button:hover {
+      transform: scale(1.2);
+    }
 
-</style>
+  </style>
 </head>
 <body>
   <h1>🎧 PodCastHub</h1>
@@ -280,8 +281,8 @@
       container.innerHTML = episodes.map(ep => `
         <div class="episode">
           <div class="episode-header">
+            <button class="play-button" onclick="playAudio('${ep.audio}', '${ep.title}')">▶️</button>
             <h3>${ep.title}</h3>
-            <button class="play-button" onclick="playAudio('${ep.audio}', '${ep.title}')">Lire</button>
             <span class="arrow" onclick="toggleDetails(this)">▼</span>
           </div>
           <p><em>${new Date(ep.pubDate).toLocaleDateString()}</em></p>
