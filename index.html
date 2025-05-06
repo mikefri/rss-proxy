@@ -85,20 +85,6 @@
       width: 100%;
       margin-top: 0.5em;
     }
-    .play-button {
-      background-color: #4CAF50;
-      color: white;
-      padding: 0.3em 0.7em;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.9em;
-      margin-top: 0.5em;
-      margin-right: 1em;
-    }
-    .play-button:hover {
-      background-color: #45a049;
-    }
     #audio-player {
       background-color: #fff;
       padding: 1em;
@@ -107,6 +93,12 @@
       align-items: center;
       gap: 1em;
       margin-bottom: 1em;
+    }
+    #audio-player img {
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+      object-fit: cover;
     }
     #audio-player audio {
       width: 60%;
@@ -129,6 +121,7 @@
   <h1>🎧 PodCastHub</h1>
 
   <div id="audio-player" style="display: none;">
+    <img id="audio-podcast-image" src="" alt="Podcast image">
     <audio id="audio-player-element" controls>
       <source id="audio-source" src="" type="audio/mpeg">
     </audio>
@@ -212,13 +205,13 @@
       container.innerHTML = episodes.map(ep => `
         <div class="episode">
           <div class="episode-header">
-            <button class="play-button" onclick="playAudio('${ep.audio}')">Lire</button>
             <h3>${ep.title}</h3>
             <span class="arrow" onclick="toggleDetails(this)">▼</span>
           </div>
           <p><em>${new Date(ep.pubDate).toLocaleDateString()}</em></p>
           <div class="episode-details">
             <p>${ep.description}</p>
+            <button class="play-button" onclick="playAudio('${ep.audio}', '${ep.title}')">Lire</button>
           </div>
         </div>
       `).join("");
@@ -230,7 +223,7 @@
       arrow.classList.toggle("open");
     }
 
-    function playAudio(audioUrl) {
+    function playAudio(audioUrl, title) {
       if (currentAudio) {
         currentAudio.pause();
       }
@@ -243,6 +236,8 @@
       audioElement.play();
 
       document.getElementById("audio-player").style.display = "flex";
+      document.getElementById("audio-podcast-image").src = audioUrl;
+
       currentAudio = audioElement;
     }
 
