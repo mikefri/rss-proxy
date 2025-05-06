@@ -191,6 +191,31 @@
       transform: scale(1.2);
     }
 
+    #audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    #equalizer {
+      width: 50px;
+      height: 10px;
+      background-color: #00ffe0;
+      transition: all 0.3s;
+    }
+
+    #equalizer.paused {
+      background-color: #555;
+    }
+
+    #playPauseButton {
+      background: none;
+      border: none;
+      font-size: 2em;
+      color: white;
+      cursor: pointer;
+    }
+
   </style>
 </head>
 <body>
@@ -201,7 +226,13 @@
     <audio id="audio-player-element" controls>
       <source id="audio-source" src="" type="audio/mpeg">
     </audio>
-    <button onclick="togglePlayPause()">▶️ Play</button>
+    <div id="audio-controls">
+      <button id="playPauseButton">
+        <span id="playIcon">▶️</span>
+        <span id="pauseIcon" style="display: none;">⏸️</span>
+      </button>
+      <div id="equalizer" class="paused"></div>
+    </div>
   </div>
 
   <div id="podcast-grid" class="podcast-grid">Chargement...</div>
@@ -329,38 +360,44 @@
 
     window.addEventListener("DOMContentLoaded", loadPodcastList);
 
-    // Fonction pour gérer lecture/pause
-playPauseButton.addEventListener('click', function () {
-    if (audio.paused) {
+    // Gestion de la lecture et de la pause
+    const playPauseButton = document.getElementById('playPauseButton');
+    const audio = document.getElementById('audio-player-element');
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+    const equalizer = document.getElementById('equalizer');
+
+    playPauseButton.addEventListener('click', function () {
+      if (audio.paused) {
         audio.play();
         playIcon.style.display = 'none';
         pauseIcon.style.display = 'inline';
         equalizer.classList.remove('paused');
         equalizer.classList.add('active');
-    } else {
+      } else {
         audio.pause();
         playIcon.style.display = 'inline';
         pauseIcon.style.display = 'none';
         equalizer.classList.remove('active');
         equalizer.classList.add('paused');
-    }
-});
+      }
+    });
 
-// Mettre à jour l'icône et l'égaliseur lors de la lecture
-audio.addEventListener('play', function () {
-    playIcon.style.display = 'none';
-    pauseIcon.style.display = 'inline';
-    equalizer.classList.remove('paused');
-    equalizer.classList.add('active');
-});
+    // Mettre à jour l'icône et l'égaliseur lors de la lecture
+    audio.addEventListener('play', function () {
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = 'inline';
+      equalizer.classList.remove('paused');
+      equalizer.classList.add('active');
+    });
 
-// Mettre à jour l'icône et l'égaliseur lors de la pause
-audio.addEventListener('pause', function () {
-    playIcon.style.display = 'inline';
-    pauseIcon.style.display = 'none';
-    equalizer.classList.remove('active');
-    equalizer.classList.add('paused');
-});
+    // Mettre à jour l'icône et l'égaliseur lors de la pause
+    audio.addEventListener('pause', function () {
+      playIcon.style.display = 'inline';
+      pauseIcon.style.display = 'none';
+      equalizer.classList.remove('active');
+      equalizer.classList.add('paused');
+    });
   </script>
 </body>
 </html>
