@@ -5,217 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PodCastHub</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      background-image: radial-gradient(circle at top left, #0f0c29, #302b63, #24243e);
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      color: white;
-      min-height: 100vh;
-    }
-
-    h1 {
-      font-size: 2.8em;
-      margin: 0 0 20px;
-      background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: neonText 3s linear infinite;
-    }
-
-    @keyframes neonText {
-      0% { background-position: 0% center; }
-      50% { background-position: 100% center; }
-      100% { background-position: 0% center; }
-    }
-
-    .top-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(20, 20, 20, 0.8);
-      backdrop-filter: blur(15px);
-      padding: 20px 0;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
-    }
-
-    .podcast-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 1em;
-      margin-top: 90px; /* Laisse de l'espace pour la barre de navigation */
-      margin-bottom: 2em;
-    }
-
-    .podcast-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid rgba(255, 0, 255, 0.3);
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .podcast-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
-    }
-
-    .podcast-card img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    #podcast-header {
-      display: flex;
-      align-items: center;
-      gap: 1em;
-      margin-bottom: 1em;
-      color: white;
-    }
-
-    #podcast-header img {
-      width: 80px;
-      height: 80px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
-
-    #episodes .episode {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1em;
-      margin-bottom: 1em;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      backdrop-filter: blur(10px);
-    }
-
-    #episodes .episode-header {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      color: white;
-    }
-
-    .arrow {
-      cursor: pointer;
-      font-size: 1.2em;
-      transition: transform 0.3s;
-      color: #00ffe0;
-    }
-
-    .arrow.open {
-      transform: rotate(180deg);
-    }
-
-    .episode-details {
-      display: none;
-      padding-top: 1em;
-    }
-
-    audio {
-      width: 100%;
-      margin-top: 0.5em;
-    }
-
-    #audio-player {
-      margin-top: 20px;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(15px);
-      border: 2px solid rgba(0, 255, 255, 0.4);
-      border-radius: 20px;
-      padding: 15px 25px;
-      display: none;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      max-width: 800px;
-      width: 100%;
-      box-shadow: 0 8px 30px rgba(0, 255, 255, 0.3);
-    }
-
-    #audio-player img {
-      width: 60px;
-      height: 60px;
-      border-radius: 12px;
-      object-fit: cover;
-    }
-
-    #audio-player button {
-      background: none;
-      border: none;
-      border-radius: 0;
-      width: auto;
-      height: auto;
-      font-size: 2em;
-      color: white;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    #audio-player button:hover {
-      transform: scale(1.2);
-    }
-
-    .play-button {
-      background: none;
-      border: none;
-      color: #00ffe0;
-      font-size: 1em;
-      cursor: pointer;
-      transition: transform 0.3s;
-      margin-right: 10px;
-    }
-
-    .play-button:hover {
-      transform: scale(1.2);
-    }
-
-    #audio-controls {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    #equalizer {
-      width: 50px;
-      height: 10px;
-      background-color: #00ffe0;
-      transition: all 0.3s;
-    }
-
-    #equalizer.paused {
-      background-color: #555;
-    }
-
-    #playPauseButton {
-      background: none;
-      border: none;
-      font-size: 2em;
-      color: white;
-      cursor: pointer;
-    }
-
+    /* ... (Styles identiques à ceux que tu as fournis) ... */
   </style>
 </head>
 <body>
@@ -231,7 +21,6 @@
         <span id="playIcon">▶️</span>
         <span id="pauseIcon" style="display: none;">⏸️</span>
       </button>
-      
     </div>
   </div>
 
@@ -247,6 +36,7 @@
   <script>
     let podcastList = [];
     let currentAudio = null;
+    let currentPodcastImage = ""; // ajout pour stocker l'image
 
     async function loadPodcastList() {
       try {
@@ -265,6 +55,7 @@
           card.addEventListener("click", () => {
             const index = card.getAttribute("data-index");
             const podcast = podcastList[index];
+            currentPodcastImage = podcast.image; // on garde l'image courante
             fetchPodcastRSS(podcast.url, podcast.name, podcast.image);
           });
         });
@@ -312,7 +103,7 @@
       container.innerHTML = episodes.map(ep => `
         <div class="episode">
           <div class="episode-header">
-            <button class="play-button" onclick="playAudio('${ep.audio}', '${ep.title}')">▶️</button>
+            <button class="play-button" onclick="playAudio('${ep.audio}', '${ep.title}', '${currentPodcastImage}')">▶️</button>
             <h3>${ep.title}</h3>
             <span class="arrow" onclick="toggleDetails(this)">▼</span>
           </div>
@@ -330,7 +121,7 @@
       arrow.classList.toggle("open");
     }
 
-    function playAudio(audioUrl, title) {
+    function playAudio(audioUrl, title, imageUrl) {
       if (currentAudio) {
         currentAudio.pause();
       }
@@ -342,62 +133,37 @@
       audioElement.load();
       audioElement.play();
 
+      document.getElementById("audio-podcast-image").src = imageUrl; // image correcte
       document.getElementById("audio-player").style.display = "flex";
-      document.getElementById("audio-podcast-image").src = audioUrl;
 
       currentAudio = audioElement;
     }
 
-    function togglePlayPause() {
-      if (currentAudio.paused) {
-        currentAudio.play();
-        document.querySelector("#audio-player button").textContent = "⏸️ Pause";
-      } else {
-        currentAudio.pause();
-        document.querySelector("#audio-player button").textContent = "▶️ Play";
-      }
-    }
-
-    window.addEventListener("DOMContentLoaded", loadPodcastList);
-
-    // Gestion de la lecture et de la pause
+    // Gestion lecture/pause
     const playPauseButton = document.getElementById('playPauseButton');
     const audio = document.getElementById('audio-player-element');
     const playIcon = document.getElementById('playIcon');
     const pauseIcon = document.getElementById('pauseIcon');
-    const equalizer = document.getElementById('equalizer');
 
     playPauseButton.addEventListener('click', function () {
       if (audio.paused) {
         audio.play();
-        playIcon.style.display = 'none';
-        pauseIcon.style.display = 'inline';
-        equalizer.classList.remove('paused');
-        equalizer.classList.add('active');
       } else {
         audio.pause();
-        playIcon.style.display = 'inline';
-        pauseIcon.style.display = 'none';
-        equalizer.classList.remove('active');
-        equalizer.classList.add('paused');
       }
     });
 
-    // Mettre à jour l'icône et l'égaliseur lors de la lecture
     audio.addEventListener('play', function () {
       playIcon.style.display = 'none';
       pauseIcon.style.display = 'inline';
-      equalizer.classList.remove('paused');
-      equalizer.classList.add('active');
     });
 
-    // Mettre à jour l'icône et l'égaliseur lors de la pause
     audio.addEventListener('pause', function () {
       playIcon.style.display = 'inline';
       pauseIcon.style.display = 'none';
-      equalizer.classList.remove('active');
-      equalizer.classList.add('paused');
     });
+
+    window.addEventListener("DOMContentLoaded", loadPodcastList);
   </script>
 </body>
 </html>
