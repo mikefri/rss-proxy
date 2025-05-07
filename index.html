@@ -192,7 +192,7 @@
 .scroll-btn {
   /*display: none; /* elles s'affichent dynamiquement */
   opacity: 0;
-  visibility: hidden;
+  visibility: visible;
   pointer-events: none;
   position: absolute;
   top: 50%;
@@ -420,13 +420,13 @@
   const btnLeft = wrapper.querySelector('.scroll-btn.left');
   const btnRight = wrapper.querySelector('.scroll-btn.right');
 
-  function updateButtons() {
+  /*function updateButtons() {
     const scrollLeft = grid.scrollLeft;
     const maxScroll = grid.scrollWidth - grid.clientWidth;
 
     btnLeft.classList.toggle('visible', scrollLeft > 10);
     btnRight.classList.toggle('visible', scrollLeft < maxScroll - 10);
-  }
+  }*/
 
   btnLeft.addEventListener('click', () => {
     grid.scrollBy({ left: -200, behavior: 'smooth' });
