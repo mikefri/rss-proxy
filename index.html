@@ -14,32 +14,31 @@
       color: white;
       min-height: 100vh;
     }
+          .top-bar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          background: rgba(20, 20, 20, 0.8);
+          backdrop-filter: blur(15px);
+          padding: 20px 0;
+          z-index: 100;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
+        }
 
-    .top-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(20, 20, 20, 0.8);
-      backdrop-filter: blur(15px);
-      padding: 20px 0;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
-    }
-
-    h1 {
-      font-size: 2.8em;
-      margin: 0 0 20px;
-      background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: neonText 3s ease-in-out infinite;
-    }
+        h1 {
+          font-size: 2.8em;
+          margin: 0 0 20px;
+          background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: neonText 3s linear infinite;
+        }
 
     @keyframes neonText {
       0% { background-position: 0% center; }
@@ -47,10 +46,12 @@
       100% { background-position: 0% center; }
     }
 
+
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 100px 20px 20px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -107,17 +108,12 @@
       width: 100%;
     }
 
-    .episode {
+    #episodes .episode {
       background: rgba(255, 255, 255, 0.05);
       padding: 1em;
       margin-bottom: 1em;
       border-radius: 8px;
       backdrop-filter: blur(10px);
-    }
-
-    .episode.playing {
-      border: 2px solid #00ffe0;
-      background: rgba(0, 255, 255, 0.1);
     }
 
     .episode-header {
@@ -131,13 +127,9 @@
       font-size: 1.2em;
       color: #00ffe0;
       transition: transform 0.3s;
-      background: none;
-      border: none;
     }
 
-    .arrow.open {
-      transform: rotate(180deg);
-    }
+    .arrow.open { transform: rotate(180deg); }
 
     .episode-details {
       display: none;
@@ -151,10 +143,38 @@
 
     #audio-player {
       margin-top: 20px;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 1em;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(0, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 15px 25px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 8px 30px rgba(0, 255, 255, 0.3);
+    }
+
+    #audio-player img {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    #audio-title {
+      font-weight: bold;
+      text-align: center;
+    }
+
+    #playPauseButton {
+      background: none;
+      border: none;
+      font-size: 2em;
+      color: white;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -199,10 +219,10 @@
 
         const grid = document.getElementById("podcast-grid");
         grid.innerHTML = podcastList.map((podcast, index) => 
-          `<div class="podcast-card" data-index="${index}">
+          <div class="podcast-card" data-index="${index}">
             <img src="${podcast.image}" alt="${podcast.name}">
             <p>${podcast.name}</p>
-          </div>`
+          </div>
         ).join("");
 
         document.querySelectorAll(".podcast-card").forEach(card => {
@@ -223,7 +243,7 @@
     async function fetchPodcastRSS(url, name, image) {
       try {
         document.getElementById("episodes").innerText = "Chargement...";
-        const apiUrl = `https://rss-proxy-ld2j.vercel.app/api/rss?url=${encodeURIComponent(url)}`;
+        const apiUrl = https://rss-proxy-ld2j.vercel.app/api/rss?url=${encodeURIComponent(url)};
         const response = await fetch(apiUrl);
         const xmlText = await response.text();
         const parser = new DOMParser();
@@ -255,15 +275,15 @@
     function displayEpisodes(episodes) {
       const container = document.getElementById("episodes");
       container.innerHTML = episodes.map(ep => 
-        `<div class="episode">
+        <div class="episode">
           <div class="episode-header">
-            <button class="play-button" onclick="playAudio('${ep.audio}', \`${ep.title.replace(/`/g, "\\`")}\`, '${currentImage}')">▶️</button>
+            <button class="play-button" onclick="playAudio('${ep.audio}', \${ep.title.replace(//g, "\\")}\, '${currentImage}')">▶️</button>
             <h3>${ep.title}</h3>
             <span class="arrow" onclick="toggleDetails(this)">▼</span>
           </div>
           <p><em>${new Date(ep.pubDate).toLocaleDateString()}</em></p>
           <div class="episode-details"><p>${ep.description}</p></div>
-        </div>`
+        </div>
       ).join("");
     }
 
