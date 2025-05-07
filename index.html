@@ -184,6 +184,39 @@
   scrollbar-width: none; /* Firefox */
 }
 
+    .scroll-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  color: #00ffe0;
+  font-size: 2em;
+  padding: 0.2em 0.4em;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  transition: background 0.3s;
+}
+
+.scroll-btn:hover {
+  background: rgba(0, 255, 255, 0.2);
+}
+
+.scroll-btn.left {
+  left: 0;
+}
+
+.scroll-btn.right {
+  right: 0;
+}
+
     
   </style>
 </head>
@@ -204,11 +237,15 @@
   </header>
 
   <div class="container">
+    <div class="scroll-wrapper">
+  <button class="scroll-btn left">&#10094;</button>
     <div id="podcast-grid" class="podcast-grid">Chargement...</div>
     <div id="podcast-header" style="display: none;">
       <img id="podcast-image" src="" alt="Podcast image">
       <h2 id="podcast-title"></h2>
     </div>
+      <button class="scroll-btn right">&#10095;</button>
+</div>
     <div id="episodes">Sélectionnez un podcast.</div>
   </div>
 
@@ -368,6 +405,26 @@
     });
 
     window.addEventListener("resize", adjustContainerPadding);
+
+const scrollAmount = 200; // pixels à faire défiler
+
+  document.querySelector('.scroll-btn.left').addEventListener('click', () => {
+    document.querySelector('.podcast-grid').scrollBy({
+      left: -scrollAmount,
+      behavior: 'smooth'
+    });
+  });
+
+  document.querySelector('.scroll-btn.right').addEventListener('click', () => {
+    document.querySelector('.podcast-grid').scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
+  });
+
+
+
+      
   </script>
 </body>
 </html>
