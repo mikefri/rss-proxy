@@ -30,16 +30,15 @@
           box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
         }
 
-    h1 {
-      font-size: 2.8em;
-      margin: 100px 0 20px;
-      text-align: center;
-      background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: neonText 3s linear infinite;
-    }
+        h1 {
+          font-size: 2.8em;
+          margin: 0 0 20px;
+          background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: neonText 3s linear infinite;
+        }
 
     @keyframes neonText {
       0% { background-position: 0% center; }
@@ -47,19 +46,7 @@
       100% { background-position: 0% center; }
     }
 
-    .top-bar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(20, 20, 20, 0.8);
-      backdrop-filter: blur(15px);
-      padding: 20px 0;
-      z-index: 100;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
-    }
+
 
     .container {
       max-width: 1200px;
