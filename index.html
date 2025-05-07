@@ -14,6 +14,21 @@
       color: white;
       min-height: 100vh;
     }
+          .top-bar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          background: rgba(20, 20, 20, 0.8);
+          backdrop-filter: blur(15px);
+          padding: 20px 0;
+          z-index: 100;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
+        }
 
     h1 {
       font-size: 2.8em;
@@ -178,10 +193,7 @@
 </head>
 <body>
   <div class="top-bar">
-    <div>🎧 PodCastHub</div>
-  </div>
-
-  <div class="container">
+      
     <h1>🎧 PodCast</h1>
 
     <div id="audio-player">
@@ -195,7 +207,7 @@
         <span id="pauseIcon" style="display: none;">⏸️</span>
       </button>
     </div>
-
+    <div class="container">
     <div id="podcast-grid" class="podcast-grid">Chargement...</div>
 
     <div id="podcast-header" style="display: none;">
