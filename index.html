@@ -415,37 +415,30 @@
 
     window.addEventListener("resize", adjustContainerPadding);
 
-  const grid = document.querySelector('.podcast-grid');
-  const btnLeft = document.querySelector('.scroll-btn.left');
-  const btnRight = document.querySelector('.scroll-btn.right');
-  const scrollAmount = 200;
+  const wrapper = document.querySelector('.scroll-wrapper');
+  const grid = wrapper.querySelector('.podcast-grid');
+  const btnLeft = wrapper.querySelector('.scroll-btn.left');
+  const btnRight = wrapper.querySelector('.scroll-btn.right');
 
-  function updateScrollButtons() {
+  function updateButtons() {
     const scrollLeft = grid.scrollLeft;
-    const scrollWidth = grid.scrollWidth;
-    const clientWidth = grid.clientWidth;
+    const maxScroll = grid.scrollWidth - grid.clientWidth;
 
-    // Si complètement à gauche
-    btnLeft.style.display = scrollLeft > 0 ? 'block' : 'none';
-
-    // Si complètement à droite
-    btnRight.style.display = scrollLeft + clientWidth < scrollWidth - 1 ? 'block' : 'none';
+    btnLeft.classList.toggle('visible', scrollLeft > 10);
+    btnRight.classList.toggle('visible', scrollLeft < maxScroll - 10);
   }
 
-  // Gestion du clic
   btnLeft.addEventListener('click', () => {
-    grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    grid.scrollBy({ left: -200, behavior: 'smooth' });
   });
 
   btnRight.addEventListener('click', () => {
-    grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    grid.scrollBy({ left: 200, behavior: 'smooth' });
   });
 
-  // Mise à jour quand on scroll manuellement
-  grid.addEventListener('scroll', updateScrollButtons);
-
-  // Initialisation après chargement
-  window.addEventListener('load', updateScrollButtons);
+  grid.addEventListener('scroll', updateButtons);
+  window.addEventListener('load', updateButtons);
+  window.addEventListener('resize', updateButtons);
 
 
 
