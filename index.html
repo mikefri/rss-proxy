@@ -200,7 +200,7 @@
     <div id="episodes">Sélectionnez un podcast.</div>
   </div>
 
-  <script>
+    <script>
     let podcastList = [];
     let currentAudio = null;
     let currentImage = "";
@@ -305,6 +305,9 @@
       document.getElementById("audio-player").style.display = "flex";
 
       currentAudio = audioElement;
+
+      // Ajuster la hauteur du container au cas où
+      adjustContainerPadding();
     }
 
     const playPauseButton = document.getElementById('playPauseButton');
@@ -334,7 +337,25 @@
       pauseIcon.style.display = 'none';
     });
 
-    window.addEventListener("DOMContentLoaded", loadPodcastList);
+    window.addEventListener("DOMContentLoaded", () => {
+      loadPodcastList();
+      adjustContainerPadding(); // Initial
+    });
+
+    // ✅ Script pour ajuster dynamiquement le padding
+    function adjustContainerPadding() {
+      const topBarHeight = document.querySelector('.top-bar').offsetHeight;
+      document.querySelector('.container').style.paddingTop = (topBarHeight + 20) + 'px';
+    }
+
+    const observer = new MutationObserver(adjustContainerPadding);
+    observer.observe(document.getElementById('audio-player'), {
+      attributes: true,
+      childList: true,
+      subtree: true
+    });
+
+    window.addEventListener("resize", adjustContainerPadding);
   </script>
 </body>
 </html>
