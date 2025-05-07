@@ -240,7 +240,7 @@
     async function fetchPodcastRSS(url, name, image) {
       try {
         document.getElementById("episodes").innerText = "Chargement...";
-        const apiUrl = `https://rss-proxy-ld2j.vercel.app/api/rss?url=${encodeURIComponent(url)}`;
+        const apiUrl = `https://rss-proxy.vercel.app/api/rss?url=${encodeURIComponent(url)}`;
         const response = await fetch(apiUrl);
         const xmlText = await response.text();
         const parser = new DOMParser();
