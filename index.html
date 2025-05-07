@@ -190,10 +190,9 @@
 }
 
 .scroll-btn {
-  /*display: none; /* elles s'affichent dynamiquement */
-  opacity: 0;
+  opacity: 1;
   visibility: visible;
-  pointer-events: none;
+  pointer-events: auto;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -206,7 +205,6 @@
   cursor: pointer;
   z-index: 10;
   backdrop-filter: blur(8px);
-  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .scroll-btn:hover {
