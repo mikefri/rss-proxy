@@ -14,31 +14,32 @@
       color: white;
       min-height: 100vh;
     }
-          .top-bar {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          background: rgba(20, 20, 20, 0.8);
-          backdrop-filter: blur(15px);
-          padding: 20px 0;
-          z-index: 100;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
-        }
 
-        h1 {
-          font-size: 2.8em;
-          margin: 0 0 20px;
-          background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
-          background-size: 200% auto;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: neonText 3s linear infinite;
-        }
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(20, 20, 20, 0.8);
+      backdrop-filter: blur(15px);
+      padding: 20px 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin: 0 0 20px;
+      background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: neonText 3s ease-in-out infinite;
+    }
 
     @keyframes neonText {
       0% { background-position: 0% center; }
@@ -46,12 +47,10 @@
       100% { background-position: 0% center; }
     }
 
-
-
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 100px 20px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -108,12 +107,17 @@
       width: 100%;
     }
 
-    #episodes .episode {
+    .episode {
       background: rgba(255, 255, 255, 0.05);
       padding: 1em;
       margin-bottom: 1em;
       border-radius: 8px;
       backdrop-filter: blur(10px);
+    }
+
+    .episode.playing {
+      border: 2px solid #00ffe0;
+      background: rgba(0, 255, 255, 0.1);
     }
 
     .episode-header {
@@ -127,9 +131,13 @@
       font-size: 1.2em;
       color: #00ffe0;
       transition: transform 0.3s;
+      background: none;
+      border: none;
     }
 
-    .arrow.open { transform: rotate(180deg); }
+    .arrow.open {
+      transform: rotate(180deg);
+    }
 
     .episode-details {
       display: none;
@@ -143,38 +151,10 @@
 
     #audio-player {
       margin-top: 20px;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(15px);
-      border: 2px solid rgba(0, 255, 255, 0.4);
-      border-radius: 20px;
-      padding: 15px 25px;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      max-width: 800px;
-      width: 100%;
-      box-shadow: 0 8px 30px rgba(0, 255, 255, 0.3);
-    }
-
-    #audio-player img {
-      width: 80px;
-      height: 80px;
-      border-radius: 12px;
-      object-fit: cover;
-    }
-
-    #audio-title {
-      font-weight: bold;
-      text-align: center;
-    }
-
-    #playPauseButton {
-      background: none;
-      border: none;
-      font-size: 2em;
-      color: white;
-      cursor: pointer;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
     }
   </style>
 </head>
