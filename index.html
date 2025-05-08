@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Téléchargement - RadiosWeb</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-  <title>🎧 PodCast</title>
   <style>
     * { box-sizing: border-box; }
 
@@ -61,23 +60,22 @@
     }
 
     .podcast-grid {
-  display: flex;
-  flex-direction: row;
-  overflow-x: auto;
-  gap: 1em;
-  width: 100%;
-  padding-bottom: 10px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 1em;
+      width: 100%;
+      padding-bottom: 10px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
 
-.podcast-card {
-  flex: 0 0 auto;
-  width: 140px;
-  scroll-snap-align: start;
-}
-    
-
+    .podcast-card {
+      flex: 0 0 auto;
+      width: 140px;
+      scroll-snap-align: start;
+      cursor: pointer;
+    }
 
     .podcast-card:hover {
       transform: scale(1.05);
@@ -89,58 +87,6 @@
       height: 140px;
       object-fit: cover;
       border-radius: 10px;
-    }
-
-    #podcast-header {
-      display: flex;
-      align-items: center;
-      gap: 1em;
-      margin: 2em 0 1em;
-      width: 100%;
-    }
-
-    #podcast-header img {
-      width: 80px;
-      height: 80px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
-
-    #episodes {
-      width: 100%;
-    }
-
-    .episode {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1em;
-      margin-bottom: 1em;
-      border-radius: 8px;
-      backdrop-filter: blur(10px);
-    }
-
-    .episode-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .arrow {
-      cursor: pointer;
-      font-size: 1.2em;
-      color: #00ffe0;
-      transition: transform 0.3s;
-    }
-
-    .arrow.open { transform: rotate(180deg); }
-
-    .episode-details {
-      display: none;
-      padding-top: 1em;
-    }
-
-    audio {
-      width: 100%;
-      margin-top: 0.5em;
     }
 
     #audio-player {
@@ -171,99 +117,58 @@
       text-align: center;
     }
 
-    #playPauseButton {
-      background: none;
-      border: none;
-      font-size: 2em;
+    .scroll-btn {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.4);
       color: white;
+      font-size: 2em;
+      padding: 0.1em 0.4em;
+      border: none;
+      border-radius: 50%;
       cursor: pointer;
+      z-index: 10;
+      backdrop-filter: blur(8px);
     }
 
+    .scroll-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
 
-.podcast-grid::-webkit-scrollbar {
-  display: none;
-}
-.podcast-grid {
-  -ms-overflow-style: none; /* IE et Edge */
-  scrollbar-width: none; /* Firefox */
-}
+    .scroll-btn.left {
+      left: 0;
+    }
 
-    .scroll-wrapper {
-  position: relative;
-  width: 100%;
-}
+    .scroll-btn.right {
+      right: 0;
+    }
 
-.scroll-btn {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.4);
-  color: white;
-  font-size: 2em;
-  padding: 0.1em 0.4em;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
-  backdrop-filter: blur(8px);
-}
-
-.scroll-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.scroll-btn.left {
-  left: 0;
-}
-
-.scroll-btn.right {
-  right: 0;
-}
     .scroll-btn.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-.title-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 10px;
-  position: relative;
-  background-color: #222; /* Couleur de fond sombre */
-  border-radius: 10px; /* Arrondi des bords */
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.6); /* Ombres néon */
-}
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
 
-.side {
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
+    .progress-bar {
+      width: 100%;
+      height: 5px;
+      background-color: #444;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
 
-.side.right {
-  justify-content: flex-end;
-}
+    .progress-bar-filled {
+      width: 0%;
+      height: 100%;
+      background-color: #0ff;
+      transition: width 0.1s;
+    }
 
-.center-title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.5em; /* Taille de police augmentée */
-  font-weight: bold;
-  text-align: center;
-  white-space: nowrap;
-  font-family: 'Montserrat', sans-serif;
-  color: #0ff; /* Couleur néon cyan */
-  text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff; /* Effet néon lumineux */
-}
-    
   </style>
 </head>
 <body>
@@ -277,15 +182,22 @@
     </div>
 
     <div id="audio-player">
-      <img id="audio-podcast-image" src="" alt="Podcast">
-      <div id="audio-title"></div>
-      <audio id="audio-player-element" controls>
-        <source id="audio-source" src="" type="audio/mpeg" />
-      </audio>
-      <button id="playPauseButton">
-        <span id="playIcon">▶️</span>
-        <span id="pauseIcon" style="display: none;">⏸️</span>
-      </button>
+      <div id="audio-player-container">
+        <img id="audio-podcast-image" src="" alt="Podcast" class="podcast-img">
+        <div id="audio-title" class="audio-title"></div>
+        <audio id="audio-player-element" controls>
+          <source id="audio-source" src="" type="audio/mpeg" />
+        </audio>
+        <div class="controls">
+          <button id="playPauseButton" class="play-pause-button">
+            <span id="playIcon" class="icon">▶️</span>
+            <span id="pauseIcon" class="icon" style="display: none;">⏸️</span>
+          </button>
+          <div id="audio-progress" class="progress-bar">
+            <div id="progress-bar-filled" class="progress-bar-filled"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -304,7 +216,7 @@
     <div id="episodes">Sélectionnez un podcast.</div>
   </div>
 
-    <script>
+  <script>
     let podcastList = [];
     let currentAudio = null;
     let currentImage = "";
@@ -356,139 +268,32 @@
           audio: item.querySelector("enclosure")?.getAttribute("url") || "",
           description: item.querySelector("description")?.textContent || "",
           pubDate: item.querySelector("pubDate")?.textContent || "",
-        }));
+}));
 
-        showPodcastHeader(name, image);
-        displayEpisodes(episodes);
-      } catch (err) {
-        document.getElementById("episodes").innerText = "Erreur de chargement.";
-        console.error(err);
-      }
-    }
+        displayPodcast(name, image, episodes);
+  } catch (err) {
+    console.error("Erreur lors du chargement du podcast RSS", err);
+    document.getElementById("episodes").innerText = "Erreur lors du chargement du podcast.";
+  }
+}
 
-    function showPodcastHeader(name, image) {
-      const header = document.getElementById("podcast-header");
-      document.getElementById("podcast-title").textContent = name;
-      document.getElementById("podcast-image").src = image;
-      header.style.display = "flex";
-    }
+function displayPodcast(name, image, episodes) {
+  const titleElement = document.getElementById("podcast-title");
+  const imageElement = document.getElementById("podcast-image");
+  titleElement.textContent = name;
+  imageElement.src = image;
 
-    function displayEpisodes(episodes) {
-      const container = document.getElementById("episodes");
-      container.innerHTML = episodes.map(ep => `
-        <div class="episode">
-          <div class="episode-header">
-            <button class="play-button" onclick="playAudio('${ep.audio}', '${escapeHTML(ep.title)}', '${currentImage}')">▶️</button>
-            <h3>${escapeHTML(ep.title)}</h3>
-            <span class="arrow" onclick="toggleDetails(this)">▼</span>
-          </div>
-          <p><em>${new Date(ep.pubDate).toLocaleDateString()}</em></p>
-          <div class="episode-details"><p>${escapeHTML(ep.description)}</p></div>
-        </div>
-      `).join("");
-    }
+  const episodeList = episodes.map(ep => `
+    <div class="episode">
+      <h3>${escapeHTML(ep.title)}</h3>
+      <p>${ep.description}</p>
+      <audio controls>
+        <source src="${ep.audio}" type="audio/mpeg">
+      </audio>
+    </div>
+  `).join("");
+  document.getElementById("episodes").innerHTML = episodeList;
+}
 
-    function toggleDetails(arrow) {
-      const details = arrow.closest('.episode').querySelector('.episode-details');
-      details.style.display = details.style.display === "block" ? "none" : "block";
-      arrow.classList.toggle("open");
-    }
-
-    function playAudio(audioUrl, title, imageUrl) {
-      if (currentAudio) currentAudio.pause();
-
-      const audioElement = document.getElementById("audio-player-element");
-      const audioSource = document.getElementById("audio-source");
-
-      audioSource.src = audioUrl;
-      audioElement.load();
-      audioElement.play();
-
-      document.getElementById("audio-podcast-image").src = imageUrl;
-      document.getElementById("audio-title").textContent = title;
-      document.getElementById("audio-player").style.display = "flex";
-
-      currentAudio = audioElement;
-
-      // Ajuster la hauteur du container au cas où
-      adjustContainerPadding();
-    }
-
-    const playPauseButton = document.getElementById('playPauseButton');
-    const audio = document.getElementById('audio-player-element');
-    const playIcon = document.getElementById('playIcon');
-    const pauseIcon = document.getElementById('pauseIcon');
-
-    playPauseButton.addEventListener('click', function () {
-      if (audio.paused) {
-        audio.play();
-        playIcon.style.display = 'none';
-        pauseIcon.style.display = 'inline';
-      } else {
-        audio.pause();
-        playIcon.style.display = 'inline';
-        pauseIcon.style.display = 'none';
-      }
-    });
-
-    audio.addEventListener('play', () => {
-      playIcon.style.display = 'none';
-      pauseIcon.style.display = 'inline';
-    });
-
-    audio.addEventListener('pause', () => {
-      playIcon.style.display = 'inline';
-      pauseIcon.style.display = 'none';
-    });
-
-    window.addEventListener("DOMContentLoaded", () => {
-      loadPodcastList();
-      adjustContainerPadding(); // Initial
-    });
-
-    // ✅ Script pour ajuster dynamiquement le padding
-    function adjustContainerPadding() {
-      const topBarHeight = document.querySelector('.top-bar').offsetHeight;
-      document.querySelector('.container').style.paddingTop = (topBarHeight + 20) + 'px';
-    }
-
-    const observer = new MutationObserver(adjustContainerPadding);
-    observer.observe(document.getElementById('audio-player'), {
-      attributes: true,
-      childList: true,
-      subtree: true
-    });
-
-    window.addEventListener("resize", adjustContainerPadding);
-
-  const wrapper = document.querySelector('.scroll-wrapper');
-  const grid = wrapper.querySelector('.podcast-grid');
-  const btnLeft = wrapper.querySelector('.scroll-btn.left');
-  const btnRight = wrapper.querySelector('.scroll-btn.right');
-
-  /*function updateButtons() {
-    const scrollLeft = grid.scrollLeft;
-    const maxScroll = grid.scrollWidth - grid.clientWidth;
-
-    btnLeft.classList.toggle('visible', scrollLeft > 10);
-    btnRight.classList.toggle('visible', scrollLeft < maxScroll - 10);
-  }*/
-
-  btnLeft.addEventListener('click', () => {
-    grid.scrollBy({ left: -200, behavior: 'smooth' });
-  });
-
-  btnRight.addEventListener('click', () => {
-    grid.scrollBy({ left: 200, behavior: 'smooth' });
-  });
-
-  grid.addEventListener('scroll', updateButtons);
-  window.addEventListener('load', updateButtons);
-  window.addEventListener('resize', updateButtons);
-
-
-
-      
-  </script>
-</body>
-</html>
+loadPodcastList();
+    </script> </body> </html>
