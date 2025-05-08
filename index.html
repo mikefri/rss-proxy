@@ -228,18 +228,25 @@
   pointer-events: auto;
 }
 .btn-retour {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #1db954;
+  margin-top: 20px;
+  padding: 10px 25px;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
+  background-size: 200% auto;
   color: white;
-  text-decoration: none;
-  border-radius: 25px;
   font-weight: bold;
-  transition: background-color 0.3s;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+  transition: background-position 0.5s, transform 0.2s;
+  display: inline-block;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-retour:hover {
-  background-color: #17a34a;
+  background-position: 100% center;
+  transform: scale(1.05);
 }
     
   </style>
