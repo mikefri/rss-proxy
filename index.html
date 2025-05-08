@@ -227,21 +227,30 @@
   visibility: visible;
   pointer-events: auto;
 }
+.title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  width: 90%;
+  max-width: 1200px;
+}
+
 .btn-retour {
-  margin-top: 20px;
-  padding: 10px 25px;
-  border-radius: 30px;
+  font-size: 0.8em;
+  padding: 6px 16px;
+  border-radius: 20px;
   background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
   background-size: 200% auto;
   color: white;
   font-weight: bold;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
   transition: background-position 0.5s, transform 0.2s;
-  display: inline-block;
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
 }
 
 .btn-retour:hover {
@@ -253,8 +262,10 @@
 </head>
 <body>
   <header class="top-bar">
-    <h1>🎧 PodCast</h1>
-    <a href="https://mikefri.github.io/RadiosWeb/" class="btn-retour">← Retour</a>
+    <<div class="title-bar">
+  <h1>🎧 PodCast</h1>
+  <a href="https://mikefri.github.io/RadiosWeb/" class="btn-retour">← Radios</a>
+</div>
     <div id="audio-player">
       <img id="audio-podcast-image" src="" alt="Podcast">
       <div id="audio-title"></div>
