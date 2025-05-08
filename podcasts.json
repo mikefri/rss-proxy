@@ -5,6 +5,17 @@
     "url": "https://feeds.audiomeans.fr/feed/d7c6111b-04c1-46bc-b74c-d941a90d37fb.xml",
     "image": "https://static.audiomeans.fr/img/podcast/668d2316-2484-4af0-b473-0960d5d90c69.jpg"
   },
+  
+    {
+    "name": "CHRONIQUES CRIMINELLES",
+    "url": "https://feeds.audiomeans.fr/feed/65e18b16-20cf-4a4b-8c2d-6ba7547671cf.xml",
+    "image": "https://static.audiomeans.fr/img/podcast/0fd6e5ef-110c-48d6-8062-f8e5f8ba1dd1.jpg"
+  },
+  {
+    "name": "Enquêtes criminelles",
+    "url": "https://feeds.audiomeans.fr/feed/5acd2982-4c2c-495f-a3a8-5a25d79cf0b4.xml",
+    "image": "https://static.audiomeans.fr/img/podcast/e390aba6-89ad-462b-a603-bcd07101b637.jpg"
+  },
   {
     "name": "LEGEND",
     "url": "https://feeds.acast.com/public/shows/646cbb0bb160e00011df3980",
@@ -35,16 +46,6 @@
     "name": "Chemin de Faire",
     "url": "https://feeds.acast.com/public/shows/1b11c8a0-7fb6-429f-ad09-3037028256a6",
     "image": "https://assets.pippa.io/shows/60dca3e9f5514ad4464a4fa0/show-cover.png"
-  },
-    {
-    "name": "CHRONIQUES CRIMINELLES",
-    "url": "https://feeds.audiomeans.fr/feed/65e18b16-20cf-4a4b-8c2d-6ba7547671cf.xml",
-    "image": "https://static.audiomeans.fr/img/podcast/0fd6e5ef-110c-48d6-8062-f8e5f8ba1dd1.jpg"
-  },
-  {
-    "name": "Enquêtes criminelles",
-    "url": "https://feeds.audiomeans.fr/feed/5acd2982-4c2c-495f-a3a8-5a25d79cf0b4.xml",
-    "image": "https://static.audiomeans.fr/img/podcast/e390aba6-89ad-462b-a603-bcd07101b637.jpg"
   },
     {
     "name": "Ecoutegay : histoires érotiques gays 🌈🔞",
