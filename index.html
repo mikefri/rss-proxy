@@ -227,13 +227,27 @@
   visibility: visible;
   pointer-events: auto;
 }
+.btn-retour {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1db954;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
 
+.btn-retour:hover {
+  background-color: #17a34a;
+}
     
   </style>
 </head>
 <body>
   <header class="top-bar">
     <h1>🎧 PodCast</h1>
+    <a href="https://mikefri.github.io/RadiosWeb/" class="btn-retour">← Retour</a>
     <div id="audio-player">
       <img id="audio-podcast-image" src="" alt="Podcast">
       <div id="audio-title"></div>
