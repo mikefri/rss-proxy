@@ -231,41 +231,55 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1em;
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
 }
 
-.btn-retour {
-  font-size: 0.8em;
-  padding: 6px 16px;
-  border-radius: 20px;
-  background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
-  background-size: 200% auto;
-  color: white;
+.side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.side.right {
+  justify-content: flex-end;
+}
+
+.center-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2em;
   font-weight: bold;
-  text-decoration: none;
-  font-family: 'Montserrat', sans-serif;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-  transition: background-position 0.5s, transform 0.2s;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
+  text-align: center;
   white-space: nowrap;
-}
-
-.btn-retour:hover {
-  background-position: 100% center;
-  transform: scale(1.05);
+  font-family: 'Montserrat', sans-serif;
+  color: white;
 }
     
   </style>
 </head>
 <body>
   <header class="top-bar">
-    <div class="title-bar">
-  <h1>🎧 PodCast</h1>
-  <a href="https://mikefri.github.io/RadiosWeb/" class="btn-retour">← Radios</a>
-</div>
+  
+<div class="title-bar">
+  <div class="side left">
+    <a href="https://mikefri.github.io/RadiosWeb/" class="btn-retour">← Radios</a>
+  </div>
+  <div class="center-title">🎧 PodCast</div>
+  <div class="side right">
+    <!-- Vide ou autre bouton/élément -->
+  </div>
+</div
+
+
+
+
+
+    
     <div id="audio-player">
       <img id="audio-podcast-image" src="" alt="Podcast">
       <div id="audio-title"></div>
