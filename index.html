@@ -3,26 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Téléchargement - RadiosWeb</title>
+  <title>🎧 PodCast - RadiosWeb</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-  <title>🎧 PodCast</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  
   <style>
-    * { 
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #121212, #202060, #121250);
-      background-attachment: fixed;
+      margin: 0;
+      background-image: radial-gradient(circle at top left, #0f0c29, #302b63, #24243e);
       color: white;
       min-height: 100vh;
-      line-height: 1.6;
     }
 
     .top-bar {
@@ -30,429 +23,15 @@
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(15, 15, 30, 0.85);
+      background: rgba(20, 20, 20, 0.8);
       backdrop-filter: blur(15px);
-      padding: 15px 0;
+      padding: 20px 0;
       z-index: 100;
       display: flex;
       flex-direction: column;
       align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 4px 30px rgba(0, 200, 255, 0.25);
-      transition: all 0.3s ease;
-    }
-
-    h1 {
-      font-size: 2.8em;
-      margin: 0 0 20px;
-      background: linear-gradient(90deg, #00ffe0, #0099ff, #00ffe0);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: neonText 6s ease infinite;
-    }
-
-    @keyframes neonText {
-      0% { background-position: 0% center; }
-      50% { background-position: 100% center; }
-      100% { background-position: 0% center; }
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 130px 20px 50px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: padding 0.3s ease;
-    }
-
-    .category-title {
-      font-size: 1.6em;
-      margin: 1.5em 0 1em;
-      width: 100%;
-      text-align: left;
-      color: #fff;
-      text-shadow: 0 0 10px rgba(0, 200, 255, 0.6);
-      position: relative;
-      padding-left: 15px;
-    }
-
-    .category-title::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 5px;
-      height: 24px;
-      background: linear-gradient(to bottom, #00ffe0, #0099ff);
-      border-radius: 3px;
-    }
-
-    .scroll-wrapper {
-      position: relative;
-      width: 100%;
-      margin-bottom: 40px;
-    }
-
-    .podcast-grid {
-      display: flex;
-      flex-direction: row;
-      overflow-x: auto;
-      gap: 20px;
-      width: 100%;
-      padding: 10px 5px 20px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-
-    .podcast-grid::-webkit-scrollbar {
-      display: none;
-    }
-
-    .podcast-card {
-      flex: 0 0 auto;
-      width: 160px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      padding: 10px;
-      scroll-snap-align: start;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .podcast-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(0, 255, 255, 0.15), rgba(255, 0, 255, 0.05));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      border-radius: 12px;
-      pointer-events: none;
-    }
-
-    .podcast-card:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 200, 255, 0.4);
-    }
-
-    .podcast-card:hover::after {
-      opacity: 1;
-    }
-
-    .podcast-card img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .podcast-card p {
-      margin-top: 10px;
-      font-size: 0.9em;
-      font-weight: 500;
-      text-align: center;
-      color: rgba(255, 255, 255, 0.9);
-      line-height: 1.3;
-      max-height: 2.6em;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
-
-    .scroll-btn {
-      opacity: 0.8;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(20, 20, 40, 0.85);
-      color: white;
-      width: 40px;
-      height: 40px;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 10;
-      backdrop-filter: blur(5px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-      transition: all 0.2s ease;
-    }
-
-    .scroll-btn:hover {
-      background: rgba(0, 200, 255, 0.25);
-      transform: translateY(-50%) scale(1.1);
-    }
-
-    .scroll-btn:active {
-      transform: translateY(-50%) scale(0.95);
-    }
-
-    .scroll-btn.left {
-      left: 5px;
-    }
-
-    .scroll-btn.right {
-      right: 5px;
-    }
-
-    #podcast-header {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin: 0.5em 0 2em;
-      width: 100%;
-      background: rgba(30, 30, 50, 0.6);
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all 0.3s ease;
-    }
-
-    #podcast-header img {
-      width: 100px;
-      height: 100px;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    #podcast-title {
-      font-size: 1.8em;
-      font-weight: 600;
-      color: #fff;
-      margin: 0;
-    }
-
-    #episodes {
-      width: 100%;
-    }
-
-    .episode {
-      background: rgba(30, 30, 60, 0.4);
-      padding: 1.2em;
-      margin-bottom: 1.2em;
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all 0.3s ease;
-    }
-
-    .episode:hover {
-      background: rgba(40, 40, 80, 0.5);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 200, 255, 0.2);
-    }
-
-    .episode-header {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .play-button {
-      background: rgba(0, 200, 255, 0.2);
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2em;
-      color: white;
-      transition: all 0.2s ease;
-      flex-shrink: 0;
-    }
-
-    .play-button:hover {
-      background: rgba(0, 200, 255, 0.4);
-      transform: scale(1.1);
-    }
-
-    .play-button .fa-play {
-      margin-left: 3px;
-    }
-
-    .episode h3 {
-      margin: 0;
-      flex-grow: 1;
-      font-size: 1.1em;
-      font-weight: 600;
-    }
-
-    .episode p {
-      margin: 0.8em 0 0.5em;
-      color: rgba(255, 255, 255, 0.8);
-    }
-
-    .arrow {
-      cursor: pointer;
-      font-size: 1em;
-      color: rgba(0, 200, 255, 0.8);
-      transition: transform 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .arrow:hover {
-      background: rgba(0, 200, 255, 0.1);
-    }
-
-    .arrow.open { 
-      transform: rotate(180deg); 
-    }
-
-    .episode-details {
-      display: none;
-      padding: 1em 0 0.5em;
-      margin-top: 0.8em;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.85);
-      font-size: 0.95em;
-    }
-
-    .pub-date {
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.9em;
-      margin-top: 8px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .pub-date i {
-      font-size: 0.9em;
-      color: rgba(0, 200, 255, 0.7);
-    }
-
-    #audio-player {
-      margin-top: 10px;
-      background: rgba(15, 15, 40, 0.85);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(0, 200, 255, 0.3);
-      border-radius: 15px;
-      padding: 15px 25px;
-      display: none;
-      flex-direction: row;
-      align-items: center;
-      gap: 20px;
-      max-width: 800px;
-      width: 100%;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-      transition: all 0.3s ease;
-    }
-
-    .audio-left {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex: 1;
-      min-width: 0;
-    }
-
-    #audio-player img {
-      width: 60px;
-      height: 60px;
-      border-radius: 10px;
-      object-fit: cover;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      flex-shrink: 0;
-    }
-
-    .audio-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    #audio-title {
-      font-weight: 600;
-      font-size: 1em;
-      margin-bottom: 5px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    #audio-podcast-name {
-      font-size: 0.85em;
-      color: rgba(255, 255, 255, 0.7);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .audio-controls {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    #playPauseButton {
-      background: rgba(0, 200, 255, 0.25);
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: white;
-      font-size: 1.2em;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      flex-shrink: 0;
-    }
-
-    #playPauseButton:hover {
-      background: rgba(0, 200, 255, 0.4);
-      transform: scale(1.05);
-    }
-
-    #playPauseButton:active {
-      transform: scale(0.95);
-    }
-
-    #audio-player-element {
-      width: 100%;
-      margin-top: 15px;
-      height: 35px;
-    }
-
-    audio::-webkit-media-controls-panel {
-      background: rgba(30, 30, 60, 0.5);
-    }
-
-    audio::-webkit-media-controls-play-button {
-      background-color: rgba(0, 200, 255, 0.25);
-      border-radius: 50%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
     }
 
     .title-bar {
@@ -461,11 +40,12 @@
       justify-content: space-between;
       width: 100%;
       max-width: 1200px;
+      margin: 0 auto;
       padding: 10px 20px;
       position: relative;
-      background-color: rgba(20, 20, 40, 0.7);
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
+      background-color: rgba(34, 34, 34, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.4);
     }
 
     .side {
@@ -478,55 +58,331 @@
       justify-content: flex-end;
     }
 
+    .btn-retour {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .btn-retour:hover {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+
     .center-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 1.8em;
       font-weight: bold;
       text-align: center;
       white-space: nowrap;
-      font-family: 'Montserrat', sans-serif;
-      color: #fff;
-      text-shadow: 0 0 10px rgba(0, 200, 255, 0.8), 0 0 20px rgba(0, 200, 255, 0.5);
+      color: #0ff;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .btn-retour {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 500;
-      padding: 8px 14px;
-      border-radius: 8px;
-      background: rgba(0, 0, 0, 0.3);
-      transition: all 0.2s ease;
+    .center-title img {
+      width: 32px;
+      height: 32px;
     }
 
-    .btn-retour:hover {
-      background: rgba(0, 200, 255, 0.25);
-      transform: translateX(-3px);
+    h1 {
+      font-size: 2.8em;
+      margin: 0 0 20px;
+      background: linear-gradient(90deg, #00ffe0, #ff00ff, #00ffe0);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: neonText 3s linear infinite;
     }
 
-    .loading {
+    @keyframes neonText {
+      0% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+      100% { background-position: 0% center; }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 140px 20px 40px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      min-height: 100px;
+    }
+
+    .section-title {
+      position: relative;
       width: 100%;
-      color: rgba(255, 255, 255, 0.7);
-      font-style: italic;
+      margin: 30px 0 20px;
+      font-size: 1.8em;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 8px;
+      height: 30px;
+      background: #00ffe0;
+      margin-right: 15px;
+      border-radius: 4px;
+      box-shadow: 0 0 10px #00ffe0, 0 0 20px #00ffe0;
+    }
+
+    .podcast-grid {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 20px;
+      width: 100%;
+      padding: 15px 5px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .podcast-card {
+      flex: 0 0 auto;
+      width: 160px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 10px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      scroll-snap-align: start;
+    }
+
+    .podcast-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .podcast-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .podcast-card p {
+      margin: 10px 0 0;
+      font-size: 0.9em;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      height: 40px;
+    }
+
+    #podcast-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 30px 0 20px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    #podcast-header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #episodes {
+      width: 100%;
+    }
+
+    .episode {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .episode:hover {
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    }
+
+    .episode-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .play-button {
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #00ffe0;
+      transition: all 0.3s ease;
+    }
+
+    .play-button:hover {
+      transform: scale(1.2);
+      text-shadow: 0 0 10px #00ffe0;
+    }
+
+    .arrow {
+      cursor: pointer;
+      font-size: 1.2em;
+      color: #00ffe0;
+      transition: transform 0.3s;
+      margin-left: auto;
+    }
+
+    .arrow.open { transform: rotate(180deg); }
+
+    .episode-details {
+      display: none;
+      padding-top: 15px;
+      line-height: 1.6;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 15px;
+    }
+
+    audio {
+      width: 100%;
+      height: 40px;
+      margin-top: 15px;
+      border-radius: 20px;
+    }
+
+    #audio-player {
+      margin-top: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(0, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 15px 25px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 8px 30px rgba(0, 255, 255, 0.3);
+    }
+
+    #audio-player img {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #audio-title {
+      font-weight: bold;
+      text-align: center;
+      color: #00ffe0;
+    }
+
+    #audio-player-element {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+    }
+
+    #playPauseButton {
+      background: none;
+      border: none;
+      font-size: 2em;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #playPauseButton:hover {
+      transform: scale(1.1);
+      text-shadow: 0 0 10px white;
+    }
+
+    .podcast-grid::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .podcast-grid::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
+
+    .podcast-grid::-webkit-scrollbar-thumb {
+      background: rgba(0, 255, 255, 0.3);
+      border-radius: 4px;
+    }
+
+    .podcast-grid::-webkit-scrollbar-thumb:hover {
+      background: rgba(0, 255, 255, 0.5);
+    }
+
+    .scroll-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .scroll-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-size: 1.5em;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .scroll-btn:hover {
+      background: rgba(0, 255, 255, 0.3);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+
+    .scroll-btn.left {
+      left: 10px;
+    }
+
+    .scroll-btn.right {
+      right: 10px;
     }
 
     .loading-spinner {
-      border: 4px solid rgba(255, 255, 255, 0.1);
+      border: 4px solid rgba(255, 255, 255, 0.3);
       border-radius: 50%;
-      border-top: 4px solid rgba(0, 200, 255, 0.7);
-      width: 24px;
-      height: 24px;
+      border-top: 4px solid #00ffe0;
+      width: 40px;
+      height: 40px;
       animation: spin 1s linear infinite;
-      margin-right: 12px;
+      margin: 20px auto;
     }
 
     @keyframes spin {
@@ -534,62 +390,24 @@
       100% { transform: rotate(360deg); }
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
       .container {
-        padding: 120px 15px 40px;
+        padding: 120px 15px 30px;
       }
-
+      
+      .podcast-card {
+        width: 130px;
+      }
+      
       #podcast-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 15px;
-        padding: 15px;
       }
-
-      #podcast-header img {
-        width: 80px;
-        height: 80px;
+      
+      .center-title {
+        font-size: 1.4em;
       }
-
-      #podcast-title {
-        font-size: 1.5em;
-      }
-
-      .episode-header {
-        flex-wrap: wrap;
-      }
-
-      #audio-player {
-        flex-direction: column;
-        padding: 15px;
-        gap: 15px;
-      }
-
-      .audio-left {
-        width: 100%;
-      }
-
-      .audio-controls {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 40px 20px;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .empty-state i {
-      font-size: 3em;
-      color: rgba(0, 200, 255, 0.6);
-      margin-bottom: 15px;
-    }
-
-    .empty-state p {
-      font-size: 1.1em;
-      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -597,310 +415,235 @@
   <header class="top-bar">
     <div class="title-bar">
       <div class="side left">
-        <a href="https://mikefri.github.io/RadiosWeb/" class="btn-retour">
-          <i class="fas fa-arrow-left"></i> Radios
-        </a>
+        <a href="#" class="btn-retour">← Radios</a>
       </div>
       <div class="center-title">
-        <i class="fas fa-podcast"></i> PodCast
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMGZmZTAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIyIi8+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSI2Ii8+PC9zdmc+" alt="Podcast icon">
+        PodCast
       </div>
       <div class="side right"></div>
     </div>
 
     <div id="audio-player">
-      <div class="audio-left">
-        <img id="audio-podcast-image" src="" alt="Podcast">
-        <div class="audio-info">
-          <div id="audio-title"></div>
-          <div id="audio-podcast-name"></div>
-        </div>
-      </div>
-      <div class="audio-controls">
-        <button id="playPauseButton">
-          <i class="fas fa-play" id="playIcon"></i>
-          <i class="fas fa-pause" id="pauseIcon" style="display: none;"></i>
-        </button>
-      </div>
+      <img id="audio-podcast-image" src="" alt="Podcast">
+      <div id="audio-title"></div>
       <audio id="audio-player-element" controls>
         <source id="audio-source" src="" type="audio/mpeg" />
       </audio>
+      <button id="playPauseButton">
+        <span id="playIcon">▶️</span>
+        <span id="pauseIcon" style="display: none;">⏸️</span>
+      </button>
     </div>
   </header>
 
   <div class="container">
-    <h2 class="category-title">Découvrir des podcasts</h2>
+    <h2 class="section-title">Découvrir des podcasts</h2>
     
     <div class="scroll-wrapper">
-      <button class="scroll-btn left">
-        <i class="fas fa-chevron-left"></i>
-      </button>
+      <button class="scroll-btn left">❮</button>
       <div id="podcast-grid" class="podcast-grid">
-        <div class="loading">
-          <div class="loading-spinner"></div>
-          Chargement des podcasts...
-        </div>
+        <div class="loading-spinner"></div>
       </div>
-      <button class="scroll-btn right">
-        <i class="fas fa-chevron-right"></i>
-      </button>
+      <button class="scroll-btn right">❯</button>
     </div>
 
     <div id="podcast-header" style="display: none;">
       <img id="podcast-image" src="" alt="Podcast image">
       <div>
         <h2 id="podcast-title"></h2>
+        <p id="podcast-description">Description du podcast sélectionné</p>
       </div>
     </div>
 
-    <div id="episodes" class="empty-state">
-      <i class="fas fa-headphones-alt"></i>
-      <p>Sélectionnez un podcast pour voir les épisodes</p>
+    <div id="episodes">
+      <div style="text-align: center; padding: 50px 0;">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMGZmZTAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMjEgMTJ2N2EyIDIgMCAwIDEtMiAySDVhMiAyIDAgMCAxLTItMlY1YTIgMiAwIDAgMSAyLTJoMTFMMjEgOG00LTd2MTJNMyAxOHYzIi8+PC9zdmc+" alt="Headphones" style="width: 64px; height: 64px; opacity: 0.5;">
+        <h3 style="margin-top: 20px; color: #aaa;">Sélectionnez un podcast pour voir les épisodes</h3>
+      </div>
     </div>
   </div>
 
   <script>
-    // Fonction pour gérer les erreurs de chargement d'image
-    function handleImageError(img) {
-      img.onerror = null; // Éviter les boucles infinies
-      img.src = "https://cdn.radiofrance.fr/s3/cruiser-production/2020/12/870a0a6f-ebfb-47ef-a3ea-4e0559f30db3/1136_franceinfo_carre.jpg";
-    }
-    
-    // Initialisation des variables
+    // Variables globales
     let podcastList = [];
     let currentAudio = null;
     let currentImage = "";
-    let currentPodcastName = "";
+    let currentPodcast = null;
 
     function escapeHTML(str) {
-      if (!str) return '';
       return str.replace(/[&<>"']/g, (m) => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
       }[m]));
     }
 
-    function formatDate(dateStr) {
-      if (!dateStr) return '';
-      try {
-        const date = new Date(dateStr);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return date.toLocaleDateString('fr-FR', options);
-      } catch (e) {
-        return dateStr;
-      }
-    }
-
     async function loadPodcastList() {
       try {
-        // Essayer de charger depuis l'URL
-        let response;
-        try {
-          response = await fetch("https://raw.githubusercontent.com/mikefri/rss-proxy/main/podcasts.json");
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          podcastList = await response.json();
-        } catch (fetchError) {
-          console.warn("Impossible de charger les podcasts depuis l'URL, utilisation des podcasts par défaut", fetchError);
-          // Podcasts par défaut en cas d'erreur
-          podcastList = [
-            {
-              "name": "France Info",
-              "url": "https://radiofrance-podcast.net/podcast09/rss_14964.xml",
-              "image": "https://cdn.radiofrance.fr/s3/cruiser-production/2020/12/870a0a6f-ebfb-47ef-a3ea-4e0559f30db3/1136_franceinfo_carre.jpg"
-            },
-            {
-              "name": "France Culture",
-              "url": "https://radiofrance-podcast.net/podcast09/rss_10078.xml",
-              "image": "https://cdn.radiofrance.fr/s3/cruiser-production/2020/02/20a50cdd-5201-48b9-9645-51a558436d8a/400x400_fc_promenade-2022.jpg"
-            },
-            {
-              "name": "France Inter",
-              "url": "https://radiofrance-podcast.net/podcast09/rss_11263.xml",
-              "image": "https://cdn.radiofrance.fr/s3/cruiser-production/2019/06/d0870b90-cc4c-4d7e-a7a8-b0fabf1d3601/400x400_franceinter-2.jpg"
-            },
-            {
-              "name": "RFI",
-              "url": "https://www.rfi.fr/fr/podcasts/journal-français-facile/podcast",
-              "image": "https://s.rfi.fr/media/display/fa21e55c-4ad5-11ea-a854-005056a98db9/w:1280/p:16x9/logo-jff.jpg"
-            },
-            {
-              "name": "RTL",
-              "url": "https://feed.pippa.io/public/shows/rtl-originals",
-              "image": "https://static.wikia.nocookie.net/logopedia/images/a/a4/Rtl.jpg/revision/latest?cb=20210616091100"
-            },
-            {
-              "name": "Europe 1",
-              "url": "https://rss.acast.com/histoires-du-monde",
-              "image": "https://www.europe1.fr/assets/ref/ligne-edito-europe1.png"
-            }
-          ];
+        document.getElementById("podcast-grid").innerHTML = '<div class="loading-spinner"></div>';
+        
+        // Charger les podcasts depuis l'URL GitHub
+        const response = await fetch("https://raw.githubusercontent.com/mikefri/rss-proxy/main/podcasts.json");
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP: ${response.status}`);
         }
+        
+        podcastList = await response.json();
         
         const grid = document.getElementById("podcast-grid");
-        
-        if (podcastList.length === 0) {
-          grid.innerHTML = `
-            <div class="empty-state">
-              <i class="fas fa-podcast"></i>
-              <p>Aucun podcast trouvé</p>
-            </div>
-          `;
-          return;
-        }
-        
         grid.innerHTML = podcastList.map((podcast, index) => `
           <div class="podcast-card" data-index="${index}">
-            <img src="${podcast.image}" alt="${escapeHTML(podcast.name)}" loading="lazy" onerror="handleImageError(this)">
+            <img src="${podcast.image}" alt="${escapeHTML(podcast.name)}">
             <p>${escapeHTML(podcast.name)}</p>
           </div>
         `).join("");
 
         document.querySelectorAll(".podcast-card").forEach(card => {
           card.addEventListener("click", () => {
-            document.querySelectorAll(".podcast-card").forEach(c => 
-              c.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)'
-            );
-            card.style.boxShadow = '0 0 0 2px rgba(0, 200, 255, 0.6), 0 10px 20px rgba(0, 0, 0, 0.3)';
-            
             const index = card.getAttribute("data-index");
             const podcast = podcastList[index];
             currentImage = podcast.image;
-            currentPodcastName = podcast.name;
             fetchPodcastRSS(podcast.url, podcast.name, podcast.image);
           });
         });
         
-        updateButtons();
+        // Mettre à jour la visibilité des boutons après le chargement
+        setTimeout(updateButtonVisibility, 100);
       } catch (err) {
         console.error("Erreur de chargement des podcasts", err);
         document.getElementById("podcast-grid").innerHTML = `
-          <div class="empty-state">
-            <i class="fas fa-exclamation-triangle"></i>
-            <p>Erreur de chargement des podcasts</p>
-          </div>
-        `;
+          <div style="text-align: center; padding: 20px; color: #ff6b6b;">
+            <p>Erreur de chargement des podcasts.</p>
+            <p style="font-size: 0.9em;">${err.message}</p>
+          </div>`;
       }
     }
 
     async function fetchPodcastRSS(url, name, image) {
       try {
-        document.getElementById("episodes").innerHTML = `
-          <div class="loading">
-            <div class="loading-spinner"></div>
-            Chargement des épisodes...
-          </div>
-        `;
+        document.getElementById("episodes").innerHTML = '<div class="loading-spinner"></div>';
         
-        // Essayer d'utiliser le proxy RSS, avec repli sur CORS Anywhere en cas d'échec
-        let apiUrl = `https://rss-proxy-steel.vercel.app/api/rss?url=${encodeURIComponent(url)}`;
-        let response;
-        
-        try {
-          response = await fetch(apiUrl);
-          if (!response.ok) {
-            throw new Error("Premier proxy échoué");
-          }
-        } catch (e) {
-          console.warn("Premier proxy RSS échoué, essai avec alternative", e);
-          // Alternative avec CORS Anywhere comme solution de secours
-          apiUrl = `https://cors-anywhere.herokuapp.com/${url}`;
-          response = await fetch(apiUrl, {
-            headers: {
-              'Origin': window.location.origin
-            }
-          });
-        }
+        // Utiliser le proxy RSS pour récupérer les données
+        const apiUrl = `https://rss-proxy-steel.vercel.app/api/rss?url=${encodeURIComponent(url)}`;
+        const response = await fetch(apiUrl);
         
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`Erreur HTTP: ${response.status}`);
         }
         
         const xmlText = await response.text();
         const parser = new DOMParser();
         const xml = parser.parseFromString(xmlText, "application/xml");
 
-        const items = [...xml.querySelectorAll("item")];
+        // Extraire les épisodes du XML
+        const items = Array.from(xml.querySelectorAll("item"));
         const episodes = items.map(item => ({
           title: item.querySelector("title")?.textContent || "Sans titre",
           audio: item.querySelector("enclosure")?.getAttribute("url") || "",
           description: item.querySelector("description")?.textContent || "",
-          pubDate: item.querySelector("pubDate")?.textContent || "",
+          pubDate: item.querySelector("pubDate")?.textContent || ""
         }));
 
         showPodcastHeader(name, image);
-        
-        if (episodes.length === 0) {
-          document.getElementById("episodes").innerHTML = `
-            <div class="empty-state">
-              <i class="fas fa-podcast"></i>
-              <p>Aucun épisode trouvé pour ce podcast</p>
-            </div>
-          `;
-        } else {
-          displayEpisodes(episodes);
-        }
+        displayEpisodes(episodes);
       } catch (err) {
         document.getElementById("episodes").innerHTML = `
-          <div class="empty-state">
-            <i class="fas fa-exclamation-triangle"></i>
-            <p>Erreur lors du chargement des épisodes</p>
-          </div>
-        `;
+          <div style="text-align: center; padding: 20px; color: #ff6b6b;">
+            <p>Erreur de chargement des épisodes.</p>
+            <p style="font-size: 0.9em;">${err.message}</p>
+            <button onclick="retryFetch('${url}', '${name}', '${image}')" 
+                    style="background: rgba(0, 255, 255, 0.2); border: 1px solid #00ffe0; 
+                           color: white; padding: 8px 15px; border-radius: 20px; 
+                           margin-top: 10px; cursor: pointer;">
+              Réessayer
+            </button>
+          </div>`;
         console.error(err);
       }
     }
+    
+    function retryFetch(url, name, image) {
+      fetchPodcastRSS(url, name, image);
+    }
 
     function showPodcastHeader(name, image) {
+      currentPodcast = name;
       const header = document.getElementById("podcast-header");
       document.getElementById("podcast-title").textContent = name;
       document.getElementById("podcast-image").src = image;
+      
+      // Mettre à jour le titre du document
+      document.title = `${name} - PodCast`;
+      
       header.style.display = "flex";
       
-      // Scroll to header
-      setTimeout(() => {
-        header.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
+      // Faire défiler jusqu'au header pour une meilleure expérience
+      header.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function displayEpisodes(episodes) {
       const container = document.getElementById("episodes");
-      container.innerHTML = episodes.map(ep => `
-        <div class="episode">
-          <div class="episode-header">
-            <button class="play-button" onclick="playAudio('${ep.audio}', '${escapeHTML(ep.title)}')">
-              <i class="fas fa-play"></i>
-            </button>
-            <h3>${escapeHTML(ep.title)}</h3>
-            <span class="arrow" onclick="toggleDetails(this)">
-              <i class="fas fa-chevron-down"></i>
-            </span>
+      
+      if (episodes.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 40px 0;">
+            <p>Aucun épisode trouvé pour ce podcast.</p>
+          </div>`;
+        return;
+      }
+      
+      // Nettoyage des descriptions qui peuvent contenir du HTML
+      const cleanDescription = (desc) => {
+        // Créer un élément div temporaire pour parser le HTML
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = desc;
+        // Récupérer le texte sans les balises HTML
+        const cleanText = tempDiv.textContent || tempDiv.innerText || "";
+        return cleanText.trim();
+      };
+      
+      container.innerHTML = episodes.map((ep, index) => {
+        // Vérifier si l'URL audio est valide
+        const hasAudio = ep.audio && ep.audio.trim() !== "";
+        const pubDate = ep.pubDate ? new Date(ep.pubDate) : new Date();
+        const formattedDate = !isNaN(pubDate.getTime()) ? 
+          pubDate.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }) :
+          "Date inconnue";
+        
+        const cleanDesc = cleanDescription(ep.description);
+        
+        return `
+          <div class="episode">
+            <div class="episode-header">
+              ${hasAudio ? 
+                `<button class="play-button" onclick="playAudio('${ep.audio}', '${escapeHTML(ep.title)}', '${currentImage}')">▶️</button>` : 
+                `<span class="play-button" style="opacity: 0.3; cursor: not-allowed;">▶️</span>`
+              }
+              <h3>${escapeHTML(ep.title)}</h3>
+              <span class="arrow" onclick="toggleDetails(this)">▼</span>
+            </div>
+            <p><em>${formattedDate}</em></p>
+            <div class="episode-details">
+              <p>${escapeHTML(cleanDesc)}</p>
+              ${hasAudio ? 
+                `<audio controls style="width: 100%; margin-top: 15px;">
+                  <source src="${ep.audio}" type="audio/mpeg">
+                  Votre navigateur ne supporte pas la lecture audio.
+                </audio>` : 
+                `<p style="color: #ff6b6b;">Aucun fichier audio disponible pour cet épisode.</p>`
+              }
+            </div>
           </div>
-          <div class="pub-date">
-            <i class="far fa-calendar-alt"></i> ${formatDate(ep.pubDate)}
-          </div>
-          <div class="episode-details">
-            <p>${escapeHTML(ep.description)}</p>
-          </div>
-        </div>
-      `).join("");
+        `;
+      }).join("");
     }
 
     function toggleDetails(arrow) {
       const details = arrow.closest('.episode').querySelector('.episode-details');
-      const isVisible = details.style.display === "block";
-      
-      details.style.display = isVisible ? "none" : "block";
+      details.style.display = details.style.display === "block" ? "none" : "block";
       arrow.classList.toggle("open");
-      
-      // Scroll to make the details visible if they're opening
-      if (!isVisible && details.getBoundingClientRect().bottom > window.innerHeight) {
-        setTimeout(() => {
-          details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 100);
-      }
     }
 
-    function playAudio(audioUrl, title) {
+    function playAudio(audioUrl, title, imageUrl) {
       if (currentAudio) currentAudio.pause();
 
       const audioElement = document.getElementById("audio-player-element");
@@ -908,19 +651,19 @@
 
       audioSource.src = audioUrl;
       audioElement.load();
-      audioElement.play();
+      
+      // Pour la démo, simulons que l'audio se charge
+      setTimeout(() => {
+        audioElement.play().catch(e => console.error("Erreur de lecture audio:", e));
+      }, 500);
 
-      document.getElementById("audio-podcast-image").src = currentImage;
+      document.getElementById("audio-podcast-image").src = imageUrl;
       document.getElementById("audio-title").textContent = title;
-      document.getElementById("audio-podcast-name").textContent = currentPodcastName;
       document.getElementById("audio-player").style.display = "flex";
 
       currentAudio = audioElement;
-      
-      // Scroll to top to see the player
-      window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // Adjust container padding
+      // Ajuster la hauteur du container
       adjustContainerPadding();
     }
 
@@ -931,7 +674,7 @@
 
     playPauseButton.addEventListener('click', function () {
       if (audio.paused) {
-        audio.play();
+        audio.play().catch(e => console.error("Erreur de lecture audio:", e));
         playIcon.style.display = 'none';
         pauseIcon.style.display = 'inline';
       } else {
@@ -942,4 +685,71 @@
     });
 
     audio.addEventListener('play', () => {
-      play
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = 'inline';
+    });
+
+    audio.addEventListener('pause', () => {
+      playIcon.style.display = 'inline';
+      pauseIcon.style.display = 'none';
+    });
+
+    // Ajuster le padding du container
+    function adjustContainerPadding() {
+      const topBarHeight = document.querySelector('.top-bar').offsetHeight;
+      document.querySelector('.container').style.paddingTop = (topBarHeight + 20) + 'px';
+    }
+
+    // Observer les changements dans le lecteur audio
+    const observer = new MutationObserver(adjustContainerPadding);
+    observer.observe(document.getElementById('audio-player'), {
+      attributes: true, 
+      attributeFilter: ['style']
+    });
+
+    // Gestion des boutons de défilement
+    const wrapper = document.querySelector('.scroll-wrapper');
+    const grid = wrapper.querySelector('.podcast-grid');
+    const btnLeft = wrapper.querySelector('.scroll-btn.left');
+    const btnRight = wrapper.querySelector('.scroll-btn.right');
+
+    btnLeft.addEventListener('click', () => {
+      grid.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+
+    btnRight.addEventListener('click', () => {
+      grid.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+
+    function updateButtonVisibility() {
+      const scrollLeft = grid.scrollLeft;
+      const maxScroll = grid.scrollWidth - grid.clientWidth;
+      
+      btnLeft.style.opacity = scrollLeft > 10 ? "1" : "0.3";
+      btnRight.style.opacity = scrollLeft < maxScroll - 10 ? "1" : "0.3";
+    }
+
+    grid.addEventListener('scroll', updateButtonVisibility);
+    window.addEventListener('resize', updateButtonVisibility);
+
+    // Initialisation
+    // Gérer les erreurs d'audio
+    function handleAudioError(e) {
+      console.error("Erreur de lecture audio:", e);
+      alert("Impossible de lire ce fichier audio. Veuillez essayer un autre épisode.");
+    }
+    
+    // Initialisation au chargement de la page
+    window.addEventListener("DOMContentLoaded", () => {
+      loadPodcastList();
+      adjustContainerPadding();
+      
+      // Ajouter un écouteur d'erreur global sur l'élément audio
+      document.getElementById('audio-player-element').addEventListener('error', handleAudioError, true);
+      
+      // Mettre à jour la barre de navigation pour revenir au portail de radios
+      document.querySelector('.btn-retour').href = "https://mikefri.github.io/RadiosWeb/";
+    });
+  </script>
+</body>
+</html>
