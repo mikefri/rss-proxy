@@ -27,6 +27,11 @@
     "url": "https://rss.acast.com/metamorphose-le-podcast-qui-eveille-la-conscience",
     "image": "https://assets.pippa.io/shows/611d23c506c05e8ca7f406ce/1710411752636-d3bfe9076660b03ea86f25e0863e4642.jpeg"
   },
+    {
+    "name": "Alice Underground",
+    "url": "https://feeds.audiomeans.fr/feed/2a077c12-a605-462c-be1e-b7b3e29ca9da.xml",
+    "image": "https://static.audiomeans.fr/img/podcast/e113761f-a5db-4bf2-80db-b99fe2448d10.jpg"
+  },
   {
     "name": "Somnifère, le podcast pour s'endormir",
     "url": "https://feeds.audiomeans.fr/feed/895b5a08-68ae-4ed1-93c0-3cead3f6023e.xml",
