@@ -659,6 +659,13 @@
   </div>
 
   <script>
+    // Fonction pour gérer les erreurs de chargement d'image
+    function handleImageError(img) {
+      img.onerror = null; // Éviter les boucles infinies
+      img.src = "https://cdn.radiofrance.fr/s3/cruiser-production/2020/12/870a0a6f-ebfb-47ef-a3ea-4e0559f30db3/1136_franceinfo_carre.jpg";
+    }
+    
+    // Initialisation des variables
     let podcastList = [];
     let currentAudio = null;
     let currentImage = "";
@@ -684,13 +691,51 @@
 
     async function loadPodcastList() {
       try {
-        const response = await fetch("https://raw.githubusercontent.com/mikefri/rss-proxy/main/podcasts.json");
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        // Essayer de charger depuis l'URL
+        let response;
+        try {
+          response = await fetch("https://raw.githubusercontent.com/mikefri/rss-proxy/main/podcasts.json");
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          podcastList = await response.json();
+        } catch (fetchError) {
+          console.warn("Impossible de charger les podcasts depuis l'URL, utilisation des podcasts par défaut", fetchError);
+          // Podcasts par défaut en cas d'erreur
+          podcastList = [
+            {
+              "name": "France Info",
+              "url": "https://radiofrance-podcast.net/podcast09/rss_14964.xml",
+              "image": "https://cdn.radiofrance.fr/s3/cruiser-production/2020/12/870a0a6f-ebfb-47ef-a3ea-4e0559f30db3/1136_franceinfo_carre.jpg"
+            },
+            {
+              "name": "France Culture",
+              "url": "https://radiofrance-podcast.net/podcast09/rss_10078.xml",
+              "image": "https://cdn.radiofrance.fr/s3/cruiser-production/2020/02/20a50cdd-5201-48b9-9645-51a558436d8a/400x400_fc_promenade-2022.jpg"
+            },
+            {
+              "name": "France Inter",
+              "url": "https://radiofrance-podcast.net/podcast09/rss_11263.xml",
+              "image": "https://cdn.radiofrance.fr/s3/cruiser-production/2019/06/d0870b90-cc4c-4d7e-a7a8-b0fabf1d3601/400x400_franceinter-2.jpg"
+            },
+            {
+              "name": "RFI",
+              "url": "https://www.rfi.fr/fr/podcasts/journal-français-facile/podcast",
+              "image": "https://s.rfi.fr/media/display/fa21e55c-4ad5-11ea-a854-005056a98db9/w:1280/p:16x9/logo-jff.jpg"
+            },
+            {
+              "name": "RTL",
+              "url": "https://feed.pippa.io/public/shows/rtl-originals",
+              "image": "https://static.wikia.nocookie.net/logopedia/images/a/a4/Rtl.jpg/revision/latest?cb=20210616091100"
+            },
+            {
+              "name": "Europe 1",
+              "url": "https://rss.acast.com/histoires-du-monde",
+              "image": "https://www.europe1.fr/assets/ref/ligne-edito-europe1.png"
+            }
+          ];
         }
         
-        podcastList = await response.json();
         const grid = document.getElementById("podcast-grid");
         
         if (podcastList.length === 0) {
@@ -705,7 +750,7 @@
         
         grid.innerHTML = podcastList.map((podcast, index) => `
           <div class="podcast-card" data-index="${index}">
-            <img src="${podcast.image}" alt="${escapeHTML(podcast.name)}" loading="lazy">
+            <img src="${podcast.image}" alt="${escapeHTML(podcast.name)}" loading="lazy" onerror="handleImageError(this)">
             <p>${escapeHTML(podcast.name)}</p>
           </div>
         `).join("");
@@ -746,8 +791,25 @@
           </div>
         `;
         
-        const apiUrl = `https://rss-proxy-steel.vercel.app/api/rss?url=${encodeURIComponent(url)}`;
-        const response = await fetch(apiUrl);
+        // Essayer d'utiliser le proxy RSS, avec repli sur CORS Anywhere en cas d'échec
+        let apiUrl = `https://rss-proxy-steel.vercel.app/api/rss?url=${encodeURIComponent(url)}`;
+        let response;
+        
+        try {
+          response = await fetch(apiUrl);
+          if (!response.ok) {
+            throw new Error("Premier proxy échoué");
+          }
+        } catch (e) {
+          console.warn("Premier proxy RSS échoué, essai avec alternative", e);
+          // Alternative avec CORS Anywhere comme solution de secours
+          apiUrl = `https://cors-anywhere.herokuapp.com/${url}`;
+          response = await fetch(apiUrl, {
+            headers: {
+              'Origin': window.location.origin
+            }
+          });
+        }
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
